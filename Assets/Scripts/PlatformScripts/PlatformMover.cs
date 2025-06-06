@@ -12,12 +12,13 @@ public class PlatformMover : MonoBehaviour
     private Vector3 _startPosition;
     private Vector3 _targetPosition;
     private WaitForSeconds _waitForSeconds;
+    private float _sqrReachThreshold;
     private bool _isMovingUp;
-    private bool _isWaiting;
 
     private void Awake()
     {
         _waitForSeconds = new WaitForSeconds(_pauseDuration);
+        _sqrReachThreshold = _reachThreshold * _reachThreshold;
     }
 
     private void Start()
@@ -25,26 +26,27 @@ public class PlatformMover : MonoBehaviour
         _startPosition = transform.position;
         _targetPosition = _startPosition + Vector3.up * _moveDistance;
         _isMovingUp = _isMoveUpInitially;
+
+        StartCoroutine(MoveRoutine());
     }
 
-    private void Update()
+    private IEnumerator MoveRoutine()
     {
-        if (_isWaiting) return;
+        while (true)
+        {
+            Vector3 startPoint = _isMovingUp ? _startPosition : _targetPosition;
+            Vector3 endPoint = _isMovingUp ? _targetPosition : _startPosition;
 
-        Vector3 target = _isMovingUp ? _targetPosition : _startPosition;
-        transform.position = Vector3.MoveTowards(transform.position, target, _moveSpeed * Time.deltaTime);
+            while ((transform.position - endPoint).sqrMagnitude > _sqrReachThreshold)
+            {
+                transform.position = Vector3.MoveTowards(transform.position, endPoint, _moveSpeed * Time.deltaTime);
 
-        if (Vector3.Distance(transform.position, target) < _reachThreshold)
-            StartCoroutine(WaitAndSwitchDirection());
-    }
+                yield return null;
+            }
 
-    private IEnumerator WaitAndSwitchDirection()
-    {
-        _isWaiting = true;
+            yield return _waitForSeconds;
 
-        yield return _waitForSeconds;
-
-        _isMovingUp = !_isMovingUp;
-        _isWaiting = false;
+            _isMovingUp = !_isMovingUp;
+        }
     }
 }

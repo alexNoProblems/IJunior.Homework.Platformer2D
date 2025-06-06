@@ -1,7 +1,9 @@
+using System;
 using UnityEngine;
 
 public class PlayerCollector : MonoBehaviour, ITriggerHandler2D
 {
+    public static event Action<Coin> OnCoinCollected;
     [SerializeField, Tooltip("Coin collect Sound")] private AudioSource _coinCollectSound;
 
     private int _coinCount = 0;
@@ -18,7 +20,7 @@ public class PlayerCollector : MonoBehaviour, ITriggerHandler2D
             if (_coinCollectSound != null)
                 _coinCollectSound.Play();
 
-            Destroy(coin.gameObject);
+            OnCoinCollected?.Invoke(coin);
         }
     }
 }
