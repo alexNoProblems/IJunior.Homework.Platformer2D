@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-[RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(EnemyMover))]
 public class EnemyPatroller : MonoBehaviour
 {
     private const int FlipMultiplier = -1;
@@ -9,10 +9,9 @@ public class EnemyPatroller : MonoBehaviour
     [SerializeField] private float _moveSpeed = 2f;
     [SerializeField] private float _patrolDuration = 10f;
     [SerializeField] private float _waitDuration = 1f;
-    [SerializeField] private float _checkDistance = 0.2f;
-    [SerializeField] private Transform _wallChecker;
+    [SerializeField] private GroundChecker _groundChecker;
 
-    private Rigidbody2D _rigidbody2D;
+    private EnemyMover _mover;
     private WaitForSeconds _waitForSeconds;
     private bool _isMoving = true;
     private float _patrolTimer = 0f;
@@ -20,30 +19,27 @@ public class EnemyPatroller : MonoBehaviour
 
     private void Start()
     {
-        _rigidbody2D = GetComponent<Rigidbody2D>();
+        _mover = GetComponent<EnemyMover>();
         _waitForSeconds = new WaitForSeconds(_waitDuration);
     }
 
     private void FixedUpdate()
     {
-        if (_isMoving)
-        {
-            _patrolTimer += Time.deltaTime;
+        if (!_isMoving)
+            return;
+            
+        _patrolTimer += Time.deltaTime;
 
-            _rigidbody2D.velocity = new Vector2(_direction * _moveSpeed, _rigidbody2D.velocity.y);
+        _mover.Move(new Vector2(_direction * _moveSpeed, _mover.CurrentYVelocity));
 
-            RaycastHit2D hit = Physics2D.Raycast(_wallChecker.position, Vector2.right * _direction, _checkDistance);
-            bool hitGround = hit.collider != null && hit.collider.GetComponent<Ground>() != null;
-
-            if (_patrolTimer >= _patrolDuration || hit.collider != null)
-                StartCoroutine(WaitAndTurn());
-        }
+        if (_patrolTimer >= _patrolDuration || _groundChecker.IsWallAhead(_direction))
+            StartCoroutine(WaitAndTurn());
     }
 
     private IEnumerator WaitAndTurn()
     {
         _isMoving = false;
-        _rigidbody2D.velocity = Vector2.zero;
+        _mover.Stop();
 
         yield return _waitForSeconds;
 

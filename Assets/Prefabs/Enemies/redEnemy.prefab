@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4391477005480012413}
+  - component: {fileID: 5062402569929075513}
   m_Layer: 0
   m_Name: WallChecker
   m_TagString: Untagged
@@ -31,6 +32,20 @@ Transform:
   m_Father: {fileID: 2664967181477279123}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5062402569929075513
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2207940453430265424}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd9b37f3b4b14432db9e02f667aeb46e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _wallChecker: {fileID: 4391477005480012413}
+  _checkDistance: 0.2
 --- !u!1 &6795860115313320960
 GameObject:
   m_ObjectHideFlags: 0
@@ -163,6 +178,7 @@ GameObject:
   - component: {fileID: 5791991934213326176}
   - component: {fileID: 345706377355047000}
   - component: {fileID: 75533013005663881}
+  - component: {fileID: 238283831848613593}
   m_Layer: 0
   m_Name: redEnemy
   m_TagString: Untagged
@@ -274,8 +290,16 @@ MonoBehaviour:
   _moveSpeed: 2
   _patrolDuration: 10
   _waitDuration: 1
-  _checkDistance: 0.2
-  _wallChecker: {fileID: 4391477005480012413}
-  _obstacleLayer:
-    serializedVersion: 2
-    m_Bits: 64
+  _groundChecker: {fileID: 5062402569929075513}
+--- !u!114 &238283831848613593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6958632776706718257}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1b858ccb70ea484b84d57646344cb24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

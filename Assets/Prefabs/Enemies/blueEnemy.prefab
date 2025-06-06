@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 67019117644482268}
   - component: {fileID: 8119853845656177902}
   - component: {fileID: 3562172572793062580}
+  - component: {fileID: 257177462341584023}
   m_Layer: 0
   m_Name: blueEnemy
   m_TagString: Untagged
@@ -34,7 +35,7 @@ Transform:
   - {fileID: 2533018840599017211}
   - {fileID: 8321842948958501795}
   m_Father: {fileID: 0}
-  m_RootOrder: 109
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &67019117644482268
 Rigidbody2D:
@@ -123,11 +124,19 @@ MonoBehaviour:
   _moveSpeed: 2
   _patrolDuration: 10
   _waitDuration: 1
-  _checkDistance: 0.2
-  _wallChecker: {fileID: 2533018840599017211}
-  _obstacleLayer:
-    serializedVersion: 2
-    m_Bits: 64
+  _groundChecker: {fileID: 985570724356422625}
+--- !u!114 &257177462341584023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6625042993068939705}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1b858ccb70ea484b84d57646344cb24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7596953890850333552
 GameObject:
   m_ObjectHideFlags: 0
@@ -137,6 +146,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2533018840599017211}
+  - component: {fileID: 985570724356422625}
   m_Layer: 0
   m_Name: WallChecker
   m_TagString: Untagged
@@ -159,6 +169,20 @@ Transform:
   m_Father: {fileID: 556127280838834538}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &985570724356422625
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7596953890850333552}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd9b37f3b4b14432db9e02f667aeb46e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _wallChecker: {fileID: 2533018840599017211}
+  _checkDistance: 0.2
 --- !u!1 &9158622633107399362
 GameObject:
   m_ObjectHideFlags: 0

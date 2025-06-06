@@ -3,7 +3,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D), typeof(PlayerJumper))]
 public class PlatformPassenger : MonoBehaviour, ICollisionHandler2D
 {
-    private MovingPlatform _currentPlatform;
+    private IMovingPlatform _currentPlatform;
     private PlayerJumper _playerJumper;
     private Rigidbody2D _rigidbody2D;
 
@@ -29,8 +29,8 @@ public class PlatformPassenger : MonoBehaviour, ICollisionHandler2D
 
     public void OnExitCollision2D(Collision2D collision)
     {
-        if (_currentPlatform != null && collision.collider.GetComponent<MovingPlatform>() == _currentPlatform)
-            _currentPlatform = null;
+        if (_currentPlatform != null && collision.collider.TryGetComponent<IMovingPlatform>(out var platform))
+            _currentPlatform = platform;
     }
 
     private void HandleCollision(Collision2D collision)
