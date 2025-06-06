@@ -3,7 +3,7 @@ using UnityEngine.Tilemaps;
 using System.Collections;
 
 [RequireComponent(typeof(Tilemap))]
-public class TileDisappearer : MonoBehaviour
+public class TileDisappearer : MonoBehaviour, ICollisionHandler2D
 {
     [SerializeField] private float _delayBeforeDisappearer = 0.1f;
 
@@ -16,7 +16,7 @@ public class TileDisappearer : MonoBehaviour
         _waitForSeconds = new WaitForSeconds(_delayBeforeDisappearer);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    public void OnEnterCollision2D(Collision2D collision)
     {
         if (!collision.collider.TryGetComponent<Player>(out _))
             return;
@@ -28,6 +28,10 @@ public class TileDisappearer : MonoBehaviour
             StartCoroutine(RemoveTileWithDelay(cellPosition));
         }
     }
+
+    public void OnStayCollision2D(Collision2D collision) { }
+
+    public void OnExitCollision2D(Collision2D collision) { }
 
     private IEnumerator RemoveTileWithDelay(Vector3Int cellPosition)
     {

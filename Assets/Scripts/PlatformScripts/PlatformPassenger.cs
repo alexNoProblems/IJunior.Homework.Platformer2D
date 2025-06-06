@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D), typeof(PlayerJumper))]
-public class PlatformPassenger : MonoBehaviour
+public class PlatformPassenger : MonoBehaviour, ICollisionHandler2D
 {
     private MovingPlatform _currentPlatform;
     private PlayerJumper _playerJumper;
@@ -13,22 +13,26 @@ public class PlatformPassenger : MonoBehaviour
         _playerJumper = GetComponent<PlayerJumper>();
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    public void OnEnterCollision2D(Collision2D collision)
     {
-        if (_currentPlatform == null)
-            _currentPlatform = collision.collider.GetComponent<MovingPlatform>();
+        TryAssignPlatform(collision);
     }
 
-    private void OnCollisionStay2D(Collision2D collision)
+    public void OnStayCollision2D(Collision2D collision)
     {
-        if (_currentPlatform == null)
-            _currentPlatform = collision.collider.GetComponent<MovingPlatform>();
+        TryAssignPlatform(collision);
     }
 
-    private void OnCollisionExit2D(Collision2D collision)
+    public void OnExitCollision2D(Collision2D collision)
     {
         if (_currentPlatform != null && collision.collider.GetComponent<MovingPlatform>() == _currentPlatform)
             _currentPlatform = null;
+    }
+
+    private void TryAssignPlatform(Collision2D collision)
+    {
+        if (_currentPlatform == null)
+            _currentPlatform = collision.collider.GetComponent<MovingPlatform>();
     }
 
     private void FixedUpdate()

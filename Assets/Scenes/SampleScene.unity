@@ -3989,6 +3989,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -7085449345219020180, guid: 47e634773c8db41408670d7e128c76d3, type: 3}
+      propertyPath: _coinCollectSound
+      value: 
+      objectReference: {fileID: 1814726150}
     - target: {fileID: 2749133815102990133, guid: 47e634773c8db41408670d7e128c76d3, type: 3}
       propertyPath: m_Name
       value: Felix
@@ -22544,7 +22548,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 0de38e4824efe4386893641966ade60d, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -22640,8 +22644,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_audioClip: {fileID: 8300000, guid: 840680c5c18844424858720a156e9cdc, type: 3}
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -23066,6 +23070,7 @@ GameObject:
   - component: {fileID: 1844993244}
   - component: {fileID: 1844993243}
   - component: {fileID: 1844993246}
+  - component: {fileID: 1844993247}
   - component: {fileID: 1844993242}
   - component: {fileID: 1844993241}
   - component: {fileID: 1844993245}
@@ -23508,6 +23513,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7f6d035ebf42841a2a56c4cfa6eb1795, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1844993247
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1844993239}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82f31f92934834c4d9b24ecdf0158198, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1866450633
