@@ -21,10 +21,4 @@ public class PlayerMover : MonoBehaviour
         velocity.x = _inputReader.Movement.x * _speed;
         _rigidBody2D.velocity = velocity;
     }
-
-    private void Move(Vector2 direction)
-    {
-        Vector3 moveVector = new Vector3(direction.x, 0, 0);
-        _rigidBody2D.MovePosition(transform.position + moveVector * _speed * Time.fixedDeltaTime);
-    }
 }

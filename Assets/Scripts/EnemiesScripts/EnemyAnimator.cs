@@ -5,8 +5,8 @@ public class EnemyAnimator : MonoBehaviour
 {
     [SerializeField] private Rigidbody2D _enemyRididbody2D;
 
-    private Animator _animator;
     private readonly int _speedHash = Animator.StringToHash("Speed");
+    private Animator _animator;
 
     private void Start()
     {

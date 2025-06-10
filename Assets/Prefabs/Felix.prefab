@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6162587041082957066}
   - component: {fileID: 7556015132070480602}
   - component: {fileID: 8390018184167808870}
+  - component: {fileID: 7905697328873600906}
   - component: {fileID: 4490389060394405468}
   - component: {fileID: -3848242834085430186}
   - component: {fileID: 3968258737724757063}
@@ -163,6 +164,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &7905697328873600906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2749133815102990133}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b9369b7b124a498d96121d139cb2a78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &4490389060394405468
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -201,7 +214,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4ee6961ca48d494081d48769230b81d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _inputReader: {fileID: 4482897887795990435, guid: 3bd3836eb1c084846952ae96c1b6da85, type: 3}
+  _inputReader: {fileID: 0}
   _groundChecker: {fileID: 0}
   _rayDistance: 0.2
   _jumpForce: 13
@@ -219,6 +232,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec1a0608c51554ab08d01c3adbfd860b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _coinCollectSound: {fileID: 0}
 --- !u!1 &6247864871215932734
 GameObject:
   m_ObjectHideFlags: 0

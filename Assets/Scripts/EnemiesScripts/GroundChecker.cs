@@ -7,8 +7,11 @@ public class GroundChecker : MonoBehaviour
 
     public bool IsWallAhead(int direction)
     {
-        RaycastHit2D hit = Physics2D.Raycast(_wallChecker.position, Vector2.right * direction, _checkDistance);
+        Vector2 origin = _wallChecker.position;
+        Vector2 rayDirection = Vector2.right * direction;
 
+        RaycastHit2D hit = Physics2D.Raycast(origin, rayDirection, _checkDistance);
+        
         return hit.collider != null && hit.collider.GetComponent<Ground>() != null;
     }
 }
