@@ -15,7 +15,7 @@ public class PlatformPassenger : MonoBehaviour, ICollisionHandler2D
 
     private void FixedUpdate()
     {
-        if (_currentPlatform != null && !_playerJumper.IsJumping)
+        if (_currentPlatform != null && _playerJumper.IsGrounded())
         {
             Vector2 velocity = _rigidbody2D.velocity;
             velocity.y += _currentPlatform.DeltaMovement.y / Time.fixedDeltaTime;

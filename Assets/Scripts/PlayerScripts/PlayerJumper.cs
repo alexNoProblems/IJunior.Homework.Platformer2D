@@ -24,7 +24,7 @@ public class PlayerJumper : MonoBehaviour
     private void Update()
     {
         StateUpdate();
-        
+
         if (_inputReader.IsJumpPressed && _isGrounded)
             _shouldJump = true;
     }
@@ -35,13 +35,15 @@ public class PlayerJumper : MonoBehaviour
         {
             IsJumping = true;
 
+            _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x, 0f);
+
             float horizontalBoost = _inputReader.Movement.x * _jumpHorizontalFactor;
             Vector2 jumpVector = new Vector2(horizontalBoost, _jumpDirectionY);
             _rigidbody2D.AddForce(jumpVector * _jumpForce, ForceMode2D.Impulse);
 
             _shouldJump = false;
         }
-
+        
         IsJumping = !_isGrounded;
     }
 
@@ -55,8 +57,15 @@ public class PlayerJumper : MonoBehaviour
         RaycastHit2D raycastHit2D = Physics2D.Raycast(_groundChecker.position, Vector2.down, _rayDistance);
 
         if (raycastHit2D.collider != null)
-            _isGrounded = raycastHit2D.collider.GetComponent<Ground>() != null;
+        {
+            var ground = raycastHit2D.collider.GetComponent<Ground>();
+            var platform = raycastHit2D.collider.GetComponent<IMovingPlatform>();
+
+            _isGrounded = ground != null || platform != null;
+        }
         else
+        {
             _isGrounded = false;
+        }
     }
 }

@@ -61,15 +61,15 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 2728298048893519535, guid: cd4b277db116d446ca8c103365c70655, type: 3}
-      insertIndex: 4
-      addedObject: {fileID: 2288035964738720956}
+      insertIndex: 3
+      addedObject: {fileID: 4625182738008948165}
   m_SourcePrefab: {fileID: 100100000, guid: cd4b277db116d446ca8c103365c70655, type: 3}
 --- !u!1 &7778780439379449474 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2728298048893519535, guid: cd4b277db116d446ca8c103365c70655, type: 3}
   m_PrefabInstance: {fileID: 5633751372643471405}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2288035964738720956
+--- !u!114 &4625182738008948165
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -82,5 +82,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _coinPrefab: {fileID: 4125431650773712525, guid: cd4b277db116d446ca8c103365c70655, type: 3}
-  _spawnOffset: {x: 1, y: 0}
-  _maxSpawns: 3
+  _minSpawnRadius: 2
+  _maxSpawnRadius: 5
+  _maxCoinNumber: 20
