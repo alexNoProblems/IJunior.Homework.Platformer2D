@@ -4059,7 +4059,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6470128242222275962, guid: 47e634773c8db41408670d7e128c76d3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -397.7
+      value: -266.3
       objectReference: {fileID: 0}
     - target: {fileID: 6470128242222275962, guid: 47e634773c8db41408670d7e128c76d3, type: 3}
       propertyPath: m_LocalPosition.y
@@ -4257,9 +4257,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _coinPrefab: {fileID: 4125431650773712525, guid: cd4b277db116d446ca8c103365c70655, type: 3}
-  _spawnOffset: {x: 1, y: 0}
-  _maxSpawns: 6
-  _spawnPerTrigger: 1
+  _minSpawnRadius: 2
+  _maxSpawnRadius: 5
+  _maxCoinNumber: 20
 --- !u!1 &870970849
 GameObject:
   m_ObjectHideFlags: 0

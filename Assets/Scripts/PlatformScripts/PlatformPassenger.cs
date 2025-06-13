@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D), typeof(PlayerJumper))]
-public class PlatformPassenger : MonoBehaviour, ICollisionHandler2D
+public class PlatformPassenger : MonoBehaviour
 {
     private IMovingPlatform _currentPlatform;
     private PlayerJumper _playerJumper;

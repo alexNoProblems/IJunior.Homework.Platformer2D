@@ -46,8 +46,8 @@ public class EnemyPatroller : MonoBehaviour
 
         yield return _waitForSeconds;
 
-        _spriteFlipper.Flip(_direction);
         _direction *= -1;
+        _spriteFlipper.Flip(_direction);
         _patrolTimer = 0f;
         _isMoving = true;
     }
