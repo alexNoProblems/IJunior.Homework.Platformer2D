@@ -5,7 +5,7 @@ public class CoinCollectSoundPlayer : MonoBehaviour
 {
     [SerializeField] private AudioClip _collectSound;
 
-    private float maxCoinVolume = 3f;
+    private float maxCoinVolume = 1f;
 
     public void PlaySound()
     {

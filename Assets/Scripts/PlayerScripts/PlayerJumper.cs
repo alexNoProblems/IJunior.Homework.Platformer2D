@@ -5,13 +5,13 @@ public class PlayerJumper : MonoBehaviour
 {
     public bool IsJumping { get; private set; }
 
-    [SerializeField] private InputReader _inputReader;
-    [SerializeField] private Transform _groundChecker;
     [SerializeField] private float _rayDistance = 0.2f;
     [SerializeField] private float _jumpForce = 13f;
     [SerializeField] private float _jumpDirectionY = 1;
     [SerializeField] private float _jumpHorizontalFactor = 2f;
 
+    private InputReader _inputReader;
+    private Transform _groundChecker;
     private Rigidbody2D _rigidbody2D;
     private bool _isGrounded;
     private bool _shouldJump;
@@ -45,6 +45,12 @@ public class PlayerJumper : MonoBehaviour
         }
         
         IsJumping = !_isGrounded;
+    }
+
+    public void Init(InputReader inputReader, Transform groundChecker)
+    {
+        _inputReader = inputReader;
+        _groundChecker = groundChecker;
     }
 
     public bool IsGrounded()

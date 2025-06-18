@@ -3,10 +3,9 @@ using UnityEngine;
 [RequireComponent(typeof(AudioSource))]
 public class JumpSoundPlayer : MonoBehaviour
 {
-    [SerializeField] private PlayerJumper _playerJumper;
-    [SerializeField] private InputReader _inputReader;
-    [SerializeField] private AudioClip _jumpSound;
-
+    private PlayerJumper _playerJumper;
+    private InputReader _inputReader;
+    private AudioClip _jumpSound;
     private AudioSource _audioSource;
 
     private void Start()
@@ -18,6 +17,13 @@ public class JumpSoundPlayer : MonoBehaviour
     {
         if (_inputReader.IsJumpPressed && _playerJumper.IsGrounded())
             PlayJumpSound();
+    }
+
+    public void Init(PlayerJumper jumper, InputReader inputReader, AudioClip jumpSound)
+    {
+        _playerJumper = jumper;
+        _inputReader = inputReader;
+        _jumpSound = jumpSound;
     }
 
     private void PlayJumpSound()

@@ -4,34 +4,62 @@ using UnityEngine;
 public class CoinSpawner : MonoBehaviour
 {
     [SerializeField] private Coin _coinPrefab;
-    [SerializeField] private float _minSpawnRadius = 2f;
-    [SerializeField] private float _maxSpawnRadius = 5f;
-    [SerializeField] private float _maxCoinNumber = 20;
+    [SerializeField] private Transform[] _spawnPoints;
+    [SerializeField] private int _coinPoolSize = 16;
+    [SerializeField] private int _initialActiveCoins = 5;
 
     private readonly List<Coin> _coinPool = new List<Coin>();
 
+    private int _nextSpawnIndex = 0;
+
     private void OnEnable()
     {
-        PlayerCollector.OnCoinCollected += HandleCoinCollected;
-        FillPool();
+        if (_coinPool.Count == 0)
+            FillPool();
+        
+        SpawnInitialCoins();
     }
 
     private void OnDisable()
     {
-        PlayerCollector.OnCoinCollected -= HandleCoinCollected;
+        foreach (var coin in _coinPool)
+            coin.ClearListeners();
     }
 
     private void FillPool()
     {
-        _coinPool.Clear();
-
-        for (int i = 0; i < _maxCoinNumber; i++)
+        for (int i = 0; i < _coinPoolSize; i++)
         {
             Coin coin = Instantiate(_coinPrefab, transform.position, Quaternion.identity);
             coin.gameObject.SetActive(false);
-            coin.Init(true);
             _coinPool.Add(coin);
         }
+    }
+
+    private void SpawnInitialCoins()
+    {
+        _nextSpawnIndex = 0;
+
+        for (int i = 0; i < _initialActiveCoins && i < _spawnPoints.Length; i++)
+        {
+            SpawnCoinAt(_spawnPoints[i].position);
+            _nextSpawnIndex++;
+        }
+    }
+
+    private void SpawnCoinAt(Vector2 position)
+    {
+        Coin coin = GetCoinFromPool();
+
+        if (coin == null)
+            return;
+
+        coin.transform.position = position;
+        coin.gameObject.SetActive(true);
+
+        coin.ClearListeners();
+        coin.OnCollected += HandleCoinCollected;
+        coin.Init(true);
     }
 
     private Coin GetCoinFromPool()
@@ -45,26 +73,15 @@ public class CoinSpawner : MonoBehaviour
         return null;
     }
 
-    private void HandleCoinCollected(Coin collectedCoin)
+    private void HandleCoinCollected(Coin coin)
     {
-        collectedCoin.gameObject.SetActive(false);
+        coin.OnCollected -= HandleCoinCollected;
+        coin.gameObject.SetActive(false);
 
-        if (collectedCoin.CanSpawnOnCollect)
-            SpawnRandomCoin(collectedCoin.transform.position, _minSpawnRadius, _maxSpawnRadius);
-    }
-
-    private void SpawnRandomCoin(Vector2 center, float minRadius, float maxRadius)
-    {
-        Vector2 randomOffset = Random.insideUnitCircle.normalized * Random.Range(_minSpawnRadius, _maxSpawnRadius);
-        Vector2 spawnPosition = center + randomOffset;
-
-        Coin coin = GetCoinFromPool();
-
-        if (coin == null)
-            return;
-
-        coin.transform.position = spawnPosition;
-        coin.gameObject.SetActive(true);
-        coin.Init(false);
+        if (_nextSpawnIndex < _spawnPoints.Length)
+        {
+            SpawnCoinAt(_spawnPoints[_nextSpawnIndex].position);
+            _nextSpawnIndex++;
+        }
     }
 }

@@ -15,7 +15,7 @@ public class SpriteFlipper : MonoBehaviour
     {
         if (Mathf.Approximately(directionX, 0f))
             return;
-
+        
         transform.rotation = directionX > 0f ? _facingRight : _facingLeft;
     }
 }
