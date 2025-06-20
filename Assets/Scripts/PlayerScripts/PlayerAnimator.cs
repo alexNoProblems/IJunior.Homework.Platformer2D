@@ -3,33 +3,23 @@ using UnityEngine;
 [RequireComponent(typeof(Animator))]
 public class PlayerAnimator : MonoBehaviour
 {
-    private InputReader _inputReader;
-    private PlayerJumper _playerJumper;
-    private SpriteFlipper _spriteFlipper;
-    private Animator _animator;
-    private string _speed = "Speed";
-    private string _isJumping = "IsJumping";
+    private static readonly int _speedHash = Animator.StringToHash("Speed");
+    private static readonly int _jumpHash = Animator.StringToHash("IsJumping");
 
-    private void Start()
+    private Animator _animator;
+
+    private void Awake()
     {
         _animator = GetComponent<Animator>();
     }
 
-    private void Update()
+    public void SetMoveSpeed(float speed)
     {
-        float horizontal = _inputReader.Movement.x;
-        float speed = Mathf.Abs(horizontal);
-
-        _animator.SetFloat(_speed, speed);
-        _animator.SetBool(_isJumping, _playerJumper.IsJumping);
-
-        _spriteFlipper.Flip(horizontal);
+        _animator.SetFloat(_speedHash, speed);
     }
 
-    public void Init(InputReader inputReader, PlayerJumper jumper, SpriteFlipper spriteFlipper)
+    public void SetJumpState(bool isJumping)
     {
-        _inputReader = inputReader;
-        _playerJumper = jumper;
-        _spriteFlipper = spriteFlipper;
+        _animator.SetBool(_jumpHash, isJumping);
     }
 }

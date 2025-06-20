@@ -3,20 +3,17 @@ using UnityEngine;
 [RequireComponent(typeof(Animator))]
 public class EnemyAnimator : MonoBehaviour
 {
-    [SerializeField] private Rigidbody2D _enemyRididbody2D;
-
     private readonly int _speedHash = Animator.StringToHash("Speed");
     private Animator _animator;
 
-    private void Start()
+    private void Awake()
     {
-        _animator = GetComponent<Animator>();
-        _enemyRididbody2D = GetComponentInParent<Rigidbody2D>();
+        _animator = GetComponent<Animator>();    
     }
 
-    private void Update()
+    public void UpdateSpeed(float speed)
     {
-        float speedX = Mathf.Abs(_enemyRididbody2D.velocity.x);
-        _animator.SetFloat(_speedHash, Mathf.Abs(_enemyRididbody2D.velocity.x));
+        if (_animator != null)
+            _animator.SetFloat(_speedHash, speed);
     }
 }

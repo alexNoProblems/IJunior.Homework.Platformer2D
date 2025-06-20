@@ -3,6 +3,9 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class EnemyMover : MonoBehaviour
 {
+    public float CurrentYVelocity => _rigidbody2D.velocity.y;
+    public Vector2 Velocity => _rigidbody2D.velocity;
+    
     private Rigidbody2D _rigidbody2D;
 
     private void Awake()
@@ -19,6 +22,4 @@ public class EnemyMover : MonoBehaviour
     {
         _rigidbody2D.velocity = Vector2.zero;
     }
-
-    public float CurrentYVelocity => _rigidbody2D.velocity.y;
 }

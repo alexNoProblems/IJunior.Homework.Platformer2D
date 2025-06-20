@@ -188,7 +188,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3855d548078544954bd270a6673dd629, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _inputReader: {fileID: 4482897887795990435, guid: 3bd3836eb1c084846952ae96c1b6da85, type: 3}
   _speed: 7
 --- !u!114 &-3848242834085430186
 MonoBehaviour:
@@ -214,8 +213,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4ee6961ca48d494081d48769230b81d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _inputReader: {fileID: 0}
-  _groundChecker: {fileID: 0}
   _rayDistance: 0.2
   _jumpForce: 13
   _jumpDirectionY: 1
@@ -232,7 +229,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec1a0608c51554ab08d01c3adbfd860b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _coinCollectSound: {fileID: 0}
 --- !u!1 &6247864871215932734
 GameObject:
   m_ObjectHideFlags: 0
@@ -242,6 +238,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6425398863892048772}
+  - component: {fileID: 7324817677568208942}
   m_Layer: 0
   m_Name: GroungChecker
   m_TagString: Untagged
@@ -264,3 +261,17 @@ Transform:
   m_Father: {fileID: 6470128242222275962}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7324817677568208942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6247864871215932734}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd9b37f3b4b14432db9e02f667aeb46e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _groundCheckPoint: {fileID: 6425398863892048772}
+  _checkDistance: 0.2

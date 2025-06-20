@@ -9,7 +9,7 @@ public class EnemyPatroller : MonoBehaviour
     [SerializeField] private float _moveSpeed = 2f;
     [SerializeField] private float _patrolDuration = 5f;
     [SerializeField] private float _waitDuration = 1f;
-    [SerializeField] private GroundChecker _groundChecker;
+    [SerializeField] private WallChecker _wallChecker;
     [SerializeField] private SpriteFlipper _spriteFlipper;
 
     private EnemyMover _mover;
@@ -33,7 +33,7 @@ public class EnemyPatroller : MonoBehaviour
 
         _mover.Move(new Vector2(_direction * _moveSpeed, _mover.CurrentYVelocity));
 
-        if (_patrolTimer >= _patrolDuration || _groundChecker.IsWallAhead(_direction))
+        if (_patrolTimer >= _patrolDuration || _wallChecker.IsWallAhead(_direction))
         {
             _isMoving = false;
             StartCoroutine(WaitAndTurn());

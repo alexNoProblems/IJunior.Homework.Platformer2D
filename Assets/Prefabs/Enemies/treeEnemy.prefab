@@ -119,7 +119,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ddd3b85ad59949b9947680d43c880bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemyRididbody2D: {fileID: 1252995847462147344}
 --- !u!1 &6877865158223098459
 GameObject:
   m_ObjectHideFlags: 0
@@ -129,7 +128,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4350621705625173601}
-  - component: {fileID: 1563208805535150226}
+  - component: {fileID: 4190112733806988250}
   m_Layer: 0
   m_Name: WallChecker
   m_TagString: Untagged
@@ -152,7 +151,7 @@ Transform:
   m_Father: {fileID: 2093334710384762764}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1563208805535150226
+--- !u!114 &4190112733806988250
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -161,10 +160,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 6877865158223098459}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd9b37f3b4b14432db9e02f667aeb46e, type: 3}
+  m_Script: {fileID: 11500000, guid: d211b35eac61447069abb2a295cbc1a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _wallChecker: {fileID: 4350621705625173601}
+  _wallCheckPoint: {fileID: 4350621705625173601}
   _checkDistance: 0.2
 --- !u!1 &8085658360426245957
 GameObject:
@@ -177,9 +176,12 @@ GameObject:
   - component: {fileID: 2093334710384762764}
   - component: {fileID: 5218114386138507701}
   - component: {fileID: 1252995847462147344}
+  - component: {fileID: 300045982910780320}
   - component: {fileID: 9015333829036065419}
   - component: {fileID: 8261516992657472707}
   - component: {fileID: 403267281143411074}
+  - component: {fileID: 8994682060459360414}
+  - component: {fileID: 5940680770092901202}
   m_Layer: 0
   m_Name: treeEnemy
   m_TagString: Untagged
@@ -202,7 +204,7 @@ Transform:
   - {fileID: 4350621705625173601}
   - {fileID: 5851672275319301954}
   m_Father: {fileID: 0}
-  m_RootOrder: 107
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &5218114386138507701
 BoxCollider2D:
@@ -276,6 +278,20 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &300045982910780320
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8085658360426245957}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6828c5c2296634bdab245060104d80c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _wallChecker: {fileID: 4190112733806988250}
+  _enemyAnimator: {fileID: 3284361509639191290}
 --- !u!114 &9015333829036065419
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -303,7 +319,7 @@ MonoBehaviour:
   _moveSpeed: 2
   _patrolDuration: 5
   _waitDuration: 1
-  _groundChecker: {fileID: 1563208805535150226}
+  _wallChecker: {fileID: 4190112733806988250}
   _spriteFlipper: {fileID: 9015333829036065419}
 --- !u!114 &403267281143411074
 MonoBehaviour:
@@ -315,5 +331,38 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d1b858ccb70ea484b84d57646344cb24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!95 &8994682060459360414
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8085658360426245957}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d2484f025b9b64eae93cdc5eebd5e74a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &5940680770092901202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8085658360426245957}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ddd3b85ad59949b9947680d43c880bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

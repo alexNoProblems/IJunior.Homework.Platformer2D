@@ -1,21 +1,21 @@
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody2D), typeof(PlayerJumper))]
+[RequireComponent(typeof(Rigidbody2D), typeof(GroundChecker))]
 public class PlatformPassenger : MonoBehaviour
 {
     private IMovingPlatform _currentPlatform;
-    private PlayerJumper _playerJumper;
+    private GroundChecker _groundChecker;
     private Rigidbody2D _rigidbody2D;
 
     private void Start()
     {
         _rigidbody2D = GetComponent<Rigidbody2D>();
-        _playerJumper = GetComponent<PlayerJumper>();
+        _groundChecker = GetComponent<GroundChecker>();
     }
 
     private void FixedUpdate()
     {
-        if (_currentPlatform != null && _playerJumper.IsGrounded())
+        if (_currentPlatform != null && _groundChecker != null && _groundChecker.IsGrounded())
         {
             Vector2 velocity = _rigidbody2D.velocity;
             velocity.y += _currentPlatform.DeltaMovement.y / Time.fixedDeltaTime;

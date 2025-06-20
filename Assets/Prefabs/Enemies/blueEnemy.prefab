@@ -11,9 +11,12 @@ GameObject:
   - component: {fileID: 556127280838834538}
   - component: {fileID: 67019117644482268}
   - component: {fileID: 8119853845656177902}
+  - component: {fileID: 4500972116008573552}
   - component: {fileID: 8479440299129752578}
   - component: {fileID: 3562172572793062580}
   - component: {fileID: 257177462341584023}
+  - component: {fileID: 4284703701927597865}
+  - component: {fileID: 4764193500066553878}
   m_Layer: 0
   m_Name: blueEnemy
   m_TagString: Untagged
@@ -36,7 +39,7 @@ Transform:
   - {fileID: 2533018840599017211}
   - {fileID: 8321842948958501795}
   m_Father: {fileID: 0}
-  m_RootOrder: 111
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &67019117644482268
 Rigidbody2D:
@@ -110,6 +113,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 0.8783264}
   m_EdgeRadius: 0
+--- !u!114 &4500972116008573552
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6625042993068939705}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6828c5c2296634bdab245060104d80c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _wallChecker: {fileID: 2128154285045928209}
+  _enemyAnimator: {fileID: 3917821205365193927}
 --- !u!114 &8479440299129752578
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -137,7 +154,7 @@ MonoBehaviour:
   _moveSpeed: 2
   _patrolDuration: 5
   _waitDuration: 1
-  _groundChecker: {fileID: 985570724356422625}
+  _wallChecker: {fileID: 2128154285045928209}
   _spriteFlipper: {fileID: 8479440299129752578}
 --- !u!114 &257177462341584023
 MonoBehaviour:
@@ -151,6 +168,39 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1b858ccb70ea484b84d57646344cb24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &4284703701927597865
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6625042993068939705}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3d6b8dd0c256d458f9588af340535d18, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &4764193500066553878
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6625042993068939705}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ddd3b85ad59949b9947680d43c880bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7596953890850333552
 GameObject:
   m_ObjectHideFlags: 0
@@ -160,7 +210,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2533018840599017211}
-  - component: {fileID: 985570724356422625}
+  - component: {fileID: 2128154285045928209}
   m_Layer: 0
   m_Name: WallChecker
   m_TagString: Untagged
@@ -183,7 +233,7 @@ Transform:
   m_Father: {fileID: 556127280838834538}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &985570724356422625
+--- !u!114 &2128154285045928209
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -192,10 +242,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 7596953890850333552}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd9b37f3b4b14432db9e02f667aeb46e, type: 3}
+  m_Script: {fileID: 11500000, guid: d211b35eac61447069abb2a295cbc1a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _wallChecker: {fileID: 2533018840599017211}
+  _wallCheckPoint: {fileID: 2533018840599017211}
   _checkDistance: 0.2
 --- !u!1 &9158622633107399362
 GameObject:
@@ -316,4 +366,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ddd3b85ad59949b9947680d43c880bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemyRididbody2D: {fileID: 67019117644482268}
