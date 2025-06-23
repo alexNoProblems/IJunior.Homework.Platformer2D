@@ -16,6 +16,7 @@ public class Enemy : MonoBehaviour
     private void FixedUpdate()
     {
         float speedX = Mathf.Abs(_mover.Velocity.x);
-        Debug.Log($"Enemy speedX: {speedX}");
+
+        _enemyAnimator.UpdateSpeed(speedX);
     }
 }
