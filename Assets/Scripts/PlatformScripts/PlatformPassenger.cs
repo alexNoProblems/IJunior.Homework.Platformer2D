@@ -23,9 +23,11 @@ public class PlatformPassenger : MonoBehaviour
         }
     }
 
-    public void OnEnterCollision2D(Collision2D collision) => HandleCollision(collision);
+    public void OnEnterCollision2D(Collision2D collision) =>
+        HandleCollision(collision);
 
-    public void OnStayCollision2D(Collision2D collision) => HandleCollision(collision);
+    public void OnStayCollision2D(Collision2D collision) =>
+        HandleCollision(collision);
 
     public void OnExitCollision2D(Collision2D collision)
     {

@@ -32,7 +32,7 @@ public class PlatformMover : MonoBehaviour
 
     private IEnumerator MoveRoutine()
     {
-        while (true)
+        while (enabled)
         {
             Vector3 startPoint = _isMovingUp ? _startPosition : _targetPosition;
             Vector3 endPoint = _isMovingUp ? _targetPosition : _startPosition;
