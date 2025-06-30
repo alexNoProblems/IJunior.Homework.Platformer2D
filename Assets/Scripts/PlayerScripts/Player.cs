@@ -9,6 +9,9 @@ public class Player : MonoBehaviour
     [SerializeField] private PlayerAnimator _playerAnimator;
     [SerializeField] private AudioClip _jumpSound;
     [SerializeField] private CoinCollectSoundPlayer _coinSoundPlayer;
+    [SerializeField] private Puncher _puncher;
+    [SerializeField] private Glove _glove;
+    [SerializeField] private Transform _gloveSpawnPoint;
 
     private PlayerMover _mover;
     private PlayerJumper _jumper;
@@ -27,21 +30,38 @@ public class Player : MonoBehaviour
         _jumper.Init(_groundChecker);
         _jumpSoundPlayer.Init(_jumper, _jumpSound);
         _collector.Init(_coinSoundPlayer);
+        _puncher.Init(_glove, _gloveSpawnPoint);
     }
 
     private void FixedUpdate()
     {
         float horizontal = _inputReader.Movement.x;
 
-        _mover.Move(_inputReader.Movement.x);
+        if (!_inputReader.PunchRequested)
+        {
+            _mover.Move(horizontal);
+
+            if (horizontal != 0)
+                _spriteFlipper.Flip(horizontal);
+        }
+        else
+        {
+            _mover.Move(0);
+        }
 
         if (_inputReader.JumpRequested && _jumper.IsGrounded)
             _jumper.Jump(horizontal);
 
         _playerAnimator.SetMoveSpeed(Mathf.Abs(horizontal));
         _playerAnimator.SetJumpState(_jumper.IsJumping);
-        _spriteFlipper.Flip(horizontal);
 
         _inputReader.ClearJumpRequest();
+
+        if (_inputReader.PunchRequested)
+        {
+            int facingDirection = _spriteFlipper.FacingDirection;
+            _puncher.TryPunch(facingDirection);
+            _inputReader.ClearPunchRequest();
+        }
     }
 }

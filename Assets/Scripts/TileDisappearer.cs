@@ -3,7 +3,7 @@ using UnityEngine.Tilemaps;
 using System.Collections;
 
 [RequireComponent(typeof(Tilemap))]
-public class TileDisappearer : MonoBehaviour
+public class TileDisappearer : MonoBehaviour, ICollisionHandler2D
 {
     [SerializeField] private float _delayBeforeDisappearer = 0.1f;
 

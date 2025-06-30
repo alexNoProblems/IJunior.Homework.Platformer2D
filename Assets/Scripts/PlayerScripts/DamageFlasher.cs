@@ -1,0 +1,44 @@
+using UnityEngine;
+using System.Collections;
+
+[RequireComponent(typeof(SpriteRenderer))]
+public class DamageFlasher : MonoBehaviour
+{
+    [SerializeField] private float _duration = 2f;
+    [SerializeField] private float _flashInterval = 0.2f;
+
+    private SpriteRenderer _spriteRenderer;
+    private Coroutine _flashCoroutine;
+    private WaitForSeconds _waitForSeconds;
+
+    private void Awake()
+    {
+        _spriteRenderer = GetComponent<SpriteRenderer>();
+        _waitForSeconds = new WaitForSeconds(_flashInterval);
+    }
+
+    public void Flash()
+    {
+        if (_flashCoroutine != null)
+            StopCoroutine(_flashCoroutine);
+
+        _flashCoroutine = StartCoroutine(FlashRoutine());
+    }
+
+    private IEnumerator FlashRoutine()
+    {
+        float elapsedTime = 0f;
+
+        while (elapsedTime < _duration)
+        {
+            _spriteRenderer.enabled = !_spriteRenderer.enabled;
+
+            yield return _waitForSeconds;
+
+            elapsedTime += _flashInterval;
+        }
+
+        _spriteRenderer.enabled = true;
+        _flashCoroutine = null;
+    }
+}

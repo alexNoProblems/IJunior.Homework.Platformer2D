@@ -4,6 +4,7 @@ public class SpriteFlipper : MonoBehaviour
 {
     private Quaternion _facingRight;
     private Quaternion _facingLeft;
+    private bool _isFacingRight = true;
 
     private void Awake()
     {
@@ -15,7 +16,11 @@ public class SpriteFlipper : MonoBehaviour
     {
         if (Mathf.Approximately(directionX, 0f))
             return;
-        
+
+        _isFacingRight = directionX > 0f;
         transform.rotation = directionX > 0f ? _facingRight : _facingLeft;
     }
+
+    public int FacingDirection =>
+        _isFacingRight ? 1 : -1;
 }

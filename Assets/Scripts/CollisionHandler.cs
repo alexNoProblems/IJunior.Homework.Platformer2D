@@ -13,9 +13,9 @@ public class CollisionHandler : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        var tileHandlers = GetComponents<TileDisappearer>();
+        var collisionHandlers = GetComponents<ICollisionHandler2D>();
 
-        foreach (var handler in tileHandlers)
+        foreach (var handler in collisionHandlers)
             handler.OnEnterCollision2D(collision);
     }
 }
