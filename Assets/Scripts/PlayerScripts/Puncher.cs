@@ -1,10 +1,13 @@
 using UnityEngine;
+using System;
 
 [RequireComponent(typeof(Animator))]
 public class Puncher : MonoBehaviour
 {
     private static readonly int _punchRightHash = Animator.StringToHash("PunchRight");
     private static readonly int _punchLeftHash = Animator.StringToHash("PunchLeft");
+
+    public event Action OnKick;
 
     private Glove _glove;
     private Animator _animator;
@@ -36,6 +39,8 @@ public class Puncher : MonoBehaviour
             _animator.SetTrigger(_punchRightHash);
         else
             _animator.SetTrigger(_punchLeftHash);
+
+        OnKick?.Invoke();
     }
 
     public void HideGlove()

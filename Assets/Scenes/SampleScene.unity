@@ -3968,7 +3968,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6470128242222275962, guid: 47e634773c8db41408670d7e128c76d3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -11.9
+      value: -12.72
       objectReference: {fileID: 0}
     - target: {fileID: 6470128242222275962, guid: 47e634773c8db41408670d7e128c76d3, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4038,7 +4038,9 @@ PrefabInstance:
       propertyPath: m_GravityScale
       value: 2
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6162587041082957066, guid: 47e634773c8db41408670d7e128c76d3, type: 3}
+    - {fileID: -1999713564748870685, guid: 47e634773c8db41408670d7e128c76d3, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 6470128242222275962, guid: 47e634773c8db41408670d7e128c76d3, type: 3}
@@ -4046,7 +4048,7 @@ PrefabInstance:
       addedObject: {fileID: 906231523}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 2749133815102990133, guid: 47e634773c8db41408670d7e128c76d3, type: 3}
-      insertIndex: 5
+      insertIndex: 4
       addedObject: {fileID: 1814726139}
     - targetCorrespondingSourceObject: {fileID: 2749133815102990133, guid: 47e634773c8db41408670d7e128c76d3, type: 3}
       insertIndex: -1
@@ -22291,10 +22293,12 @@ MonoBehaviour:
   _groundChecker: {fileID: 984876550}
   _playerAnimator: {fileID: 906231525}
   _jumpSound: {fileID: 8300000, guid: 0de38e4824efe4386893641966ade60d, type: 3}
+  _boxingGloveKickSound: {fileID: 8300000, guid: 58a2f3eb38ca2450ebbcf40a098ab59d, type: 3}
   _coinSoundPlayer: {fileID: 1814726160}
   _puncher: {fileID: 2015127893}
   _glove: {fileID: 2015127892}
   _gloveSpawnPoint: {fileID: 951602562}
+  _deathDelay: 2
 --- !u!95 &1814726145
 Animator:
   serializedVersion: 5

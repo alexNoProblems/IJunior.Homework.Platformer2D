@@ -9,13 +9,20 @@ public class Health : MonoBehaviour
 
     private int _currentHealth;
     private bool _isInvulnerable = false;
+    private bool _isDead = false;
 
     private DamageFlasher _flasher;
+    private System.Action _onDeath;
 
     private void Awake()
     {
         _currentHealth = _maxHealth;
         _flasher = GetComponent<DamageFlasher>();
+    }
+
+    public void Init(System.Action onDeath)
+    {
+        _onDeath = onDeath;
     }
 
     public void TakeDamage(int damage)
@@ -25,14 +32,19 @@ public class Health : MonoBehaviour
 
         _currentHealth -= damage;
         _currentHealth = Mathf.Max(_currentHealth, _minHealth);
-        
-        Debug.Log(_currentHealth);
 
         if (_flasher != null)
             _flasher.Flash();
 
-        _isInvulnerable = true;
-        Invoke(nameof(ResetInvulnerability), _invulnerabilityDuration);
+        if (_currentHealth == 0)
+        {
+            Die();
+        }
+        else
+        {
+            _isInvulnerable = true;
+            Invoke(nameof(ResetInvulnerability), _invulnerabilityDuration);
+        }
     }
 
     public void Heal(int healValue)
@@ -44,5 +56,11 @@ public class Health : MonoBehaviour
     private void ResetInvulnerability()
     {
         _isInvulnerable = false;
+    }
+
+    private void Die()
+    {
+        _isDead = true;
+        _onDeath?.Invoke();
     }
 }
