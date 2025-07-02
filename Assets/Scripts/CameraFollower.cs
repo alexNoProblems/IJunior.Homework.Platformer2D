@@ -23,6 +23,9 @@ public class CameraFollower : MonoBehaviour
 
     private void LateUpdate()
     {
+        if (_target == null)
+            return;
+        
         Vector3 targetPosition = _target.position;
 
         Vector3 desiredPosition = GetCameraTargetPosition(targetPosition);

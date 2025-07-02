@@ -24,6 +24,16 @@ public class DamageFlasher : MonoBehaviour
         _flashCoroutine = StartCoroutine(FlashRoutine());
     }
 
+    public void StopFlashing()
+    {
+        if (_flashCoroutine != null)
+        {
+            StopCoroutine(_flashCoroutine);
+            _spriteRenderer.enabled = true;
+            _flashCoroutine = null;
+        }
+    }
+
     private IEnumerator FlashRoutine()
     {
         float elapsedTime = 0f;

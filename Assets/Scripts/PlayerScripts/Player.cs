@@ -2,7 +2,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(PlayerMover), typeof(PlayerJumper), typeof(JumpSoundPlayer))]
 [RequireComponent(typeof(PlayerCollector), typeof(SpriteFlipper), typeof(BoxingGloveSoundPlayer))]
-[RequireComponent(typeof(Health))]
+[RequireComponent(typeof(Health), typeof(PlayerKiller), typeof(DeathSoundPlayer))]
 public class Player : MonoBehaviour
 {
     [SerializeField] private InputReader _inputReader;
@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
     [SerializeField] private PlayerAnimator _playerAnimator;
     [SerializeField] private AudioClip _jumpSound;
     [SerializeField] private AudioClip _boxingGloveKickSound;
+    [SerializeField] private AudioClip _deathSound;
     [SerializeField] private CoinCollectSoundPlayer _coinSoundPlayer;
     [SerializeField] private Puncher _puncher;
     [SerializeField] private Glove _glove;
@@ -21,8 +22,11 @@ public class Player : MonoBehaviour
     private PlayerCollector _collector;
     private JumpSoundPlayer _jumpSoundPlayer;
     private BoxingGloveSoundPlayer _boxingGloveSoundPlayer;
+    private DeathSoundPlayer _deathSoundPlayer;
     private SpriteFlipper _spriteFlipper;
     private Health _health;
+    private PlayerKiller _playerKiller;
+    private bool _isDead;
 
     private void Awake()
     {
@@ -31,19 +35,26 @@ public class Player : MonoBehaviour
         _collector = GetComponent<PlayerCollector>();
         _jumpSoundPlayer = GetComponent<JumpSoundPlayer>();
         _boxingGloveSoundPlayer = GetComponent<BoxingGloveSoundPlayer>();
+        _deathSoundPlayer = GetComponent<DeathSoundPlayer>();
         _spriteFlipper = GetComponent<SpriteFlipper>();
         _health = GetComponent<Health>();
+        _playerKiller = GetComponent<PlayerKiller>();
 
         _jumper.Init(_groundChecker);
         _jumpSoundPlayer.Init(_jumper, _jumpSound);
         _boxingGloveSoundPlayer.Init(_puncher, _boxingGloveKickSound);
+        _deathSoundPlayer.Init(_playerKiller, _deathSound);
         _collector.Init(_coinSoundPlayer);
         _puncher.Init(_glove, _gloveSpawnPoint);
         _health.Init(OnDeath);
+        _playerKiller.Init(_playerAnimator, _deathDelay);
     }
 
     private void FixedUpdate()
     {
+        if (_isDead)
+            return;
+        
         float horizontal = _inputReader.Movement.x;
 
         if (!_inputReader.PunchRequested)
@@ -76,13 +87,7 @@ public class Player : MonoBehaviour
 
     private void OnDeath()
     {
-        _playerAnimator.PlayDeath();
-
-        Collider2D collider2D = GetComponent<Collider2D>();
-
-        if (collider2D != null)
-            collider2D.enabled = false;
-
-        Destroy(gameObject, _deathDelay);
+        _isDead = true;
+        _playerKiller.Die();
     }
 }

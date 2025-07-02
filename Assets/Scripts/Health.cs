@@ -27,7 +27,7 @@ public class Health : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        if (_isInvulnerable)
+        if (_isInvulnerable || _isDead)
             return;
 
         _currentHealth -= damage;
@@ -61,6 +61,7 @@ public class Health : MonoBehaviour
     private void Die()
     {
         _isDead = true;
+        _flasher?.StopFlashing();
         _onDeath?.Invoke();
     }
 }

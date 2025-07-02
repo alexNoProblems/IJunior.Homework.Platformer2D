@@ -3886,6 +3886,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Felix
       objectReference: {fileID: 0}
+    - target: {fileID: 3927693720122286686, guid: 47e634773c8db41408670d7e128c76d3, type: 3}
+      propertyPath: _maxHealth
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3968258737724757063, guid: 47e634773c8db41408670d7e128c76d3, type: 3}
       propertyPath: _jumpForce
       value: 13
@@ -4026,6 +4030,22 @@ PrefabInstance:
       propertyPath: m_Offset.y
       value: 0.030435562
       objectReference: {fileID: 0}
+    - target: {fileID: 7556015132070480602, guid: 47e634773c8db41408670d7e128c76d3, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.x
+      value: 1.4375
+      objectReference: {fileID: 0}
+    - target: {fileID: 7556015132070480602, guid: 47e634773c8db41408670d7e128c76d3, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.y
+      value: 2.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 7556015132070480602, guid: 47e634773c8db41408670d7e128c76d3, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 1.4375
+      objectReference: {fileID: 0}
+    - target: {fileID: 7556015132070480602, guid: 47e634773c8db41408670d7e128c76d3, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 2.75
+      objectReference: {fileID: 0}
     - target: {fileID: 7905697328873600906, guid: 47e634773c8db41408670d7e128c76d3, type: 3}
       propertyPath: _targetToFlip
       value: 
@@ -4051,6 +4071,9 @@ PrefabInstance:
       insertIndex: 4
       addedObject: {fileID: 1814726139}
     - targetCorrespondingSourceObject: {fileID: 2749133815102990133, guid: 47e634773c8db41408670d7e128c76d3, type: 3}
+      insertIndex: 6
+      addedObject: {fileID: 1814726181}
+    - targetCorrespondingSourceObject: {fileID: 2749133815102990133, guid: 47e634773c8db41408670d7e128c76d3, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1814726151}
     - targetCorrespondingSourceObject: {fileID: 2749133815102990133, guid: 47e634773c8db41408670d7e128c76d3, type: 3}
@@ -4071,6 +4094,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2749133815102990133, guid: 47e634773c8db41408670d7e128c76d3, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1814726168}
+    - targetCorrespondingSourceObject: {fileID: 2749133815102990133, guid: 47e634773c8db41408670d7e128c76d3, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1814726194}
   m_SourcePrefab: {fileID: 100100000, guid: 47e634773c8db41408670d7e128c76d3, type: 3}
 --- !u!1 &841293714
 GameObject:
@@ -4623,7 +4649,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 906231522}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.2902832, y: -0, z: -0.011823614}
+  m_LocalPosition: {x: 0.2902832, y: 0, z: -0.011823614}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -22294,6 +22320,7 @@ MonoBehaviour:
   _playerAnimator: {fileID: 906231525}
   _jumpSound: {fileID: 8300000, guid: 0de38e4824efe4386893641966ade60d, type: 3}
   _boxingGloveKickSound: {fileID: 8300000, guid: 58a2f3eb38ca2450ebbcf40a098ab59d, type: 3}
+  _deathSound: {fileID: 8300000, guid: 517769fa58c70422e895e743b58479ad, type: 3}
   _coinSoundPlayer: {fileID: 1814726160}
   _puncher: {fileID: 2015127893}
   _glove: {fileID: 2015127892}
@@ -22551,6 +22578,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _groundCheckPoint: {fileID: 0}
   _checkDistance: 0.2
+--- !u!114 &1814726181
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1814726134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d780f31ebdf043f6ad30e57a4320d4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1814726194
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1814726134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25bc8875713304ecf80c3327b72bd7be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1817717615
 PrefabInstance:
   m_ObjectHideFlags: 0
