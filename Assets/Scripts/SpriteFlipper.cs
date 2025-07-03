@@ -12,7 +12,13 @@ public class SpriteFlipper : MonoBehaviour
         _facingLeft = Quaternion.Euler(0, 180, 0);
     }
 
-    public void Flip(float directionX)
+    public void FlipUpsideDown()
+    {
+        float yRotation = _isFacingRight ? 0f : 180f;
+        transform.rotation = Quaternion.Euler(0f, yRotation, 180f);
+    }
+
+    public void FlipRightLeft(float directionX)
     {
         if (Mathf.Approximately(directionX, 0f))
             return;

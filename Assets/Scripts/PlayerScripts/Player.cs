@@ -62,7 +62,7 @@ public class Player : MonoBehaviour
             _mover.Move(horizontal);
 
             if (horizontal != 0)
-                _spriteFlipper.Flip(horizontal);
+                _spriteFlipper.FlipRightLeft(horizontal);
         }
         else
         {

@@ -305,6 +305,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _wallChecker: {fileID: 4150150461235260232}
   _enemyAnimator: {fileID: 5870586085207384014}
+  _deathDelay: 2
 --- !u!114 &75533013005663881
 MonoBehaviour:
   m_ObjectHideFlags: 0

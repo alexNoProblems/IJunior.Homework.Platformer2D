@@ -180,6 +180,7 @@ GameObject:
   - component: {fileID: 9015333829036065419}
   - component: {fileID: 8261516992657472707}
   - component: {fileID: 403267281143411074}
+  - component: {fileID: 809018107578383756}
   - component: {fileID: 8994682060459360414}
   - component: {fileID: 5940680770092901202}
   m_Layer: 0
@@ -292,6 +293,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _wallChecker: {fileID: 4190112733806988250}
   _enemyAnimator: {fileID: 3284361509639191290}
+  _deathDelay: 2
 --- !u!114 &9015333829036065419
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -331,6 +333,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d1b858ccb70ea484b84d57646344cb24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &809018107578383756
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8085658360426245957}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82f31f92934834c4d9b24ecdf0158198, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!95 &8994682060459360414

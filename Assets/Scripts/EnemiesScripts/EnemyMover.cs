@@ -2,7 +2,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class EnemyMover : MonoBehaviour
-{   
+{
     private Rigidbody2D _rigidbody2D;
 
     public float CurrentYVelocity => _rigidbody2D.velocity.y;
@@ -21,5 +21,10 @@ public class EnemyMover : MonoBehaviour
     public void Stop()
     {
         _rigidbody2D.velocity = Vector2.zero;
+    }
+
+    public void AddForce(Vector2 force)
+    {
+        _rigidbody2D.AddForce(force, ForceMode2D.Impulse);
     }
 }

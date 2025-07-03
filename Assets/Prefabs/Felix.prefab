@@ -470,7 +470,10 @@ GameObject:
   - component: {fileID: 466265617462945971}
   - component: {fileID: 4601658110722127776}
   - component: {fileID: 6271222264047669967}
+  - component: {fileID: 5177050377462864476}
+  - component: {fileID: 7288095613514910689}
   - component: {fileID: 3004550894999185805}
+  - component: {fileID: 7236247147295832332}
   m_Layer: 0
   m_Name: BoxingGlove1
   m_TagString: Untagged
@@ -569,6 +572,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9ffbc763b6cc4721baa6eaf22acc7a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5177050377462864476
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7811617812972127483}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfa97bed7a1db457eab89ae7eeed144a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7288095613514910689
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7811617812972127483}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82f31f92934834c4d9b24ecdf0158198, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!95 &3004550894999185805
 Animator:
   serializedVersion: 5
@@ -590,6 +617,51 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!61 &7236247147295832332
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7811617812972127483}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 1.1239051, y: -0.1575076}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.0005291062, y: 0.5017094}
+    oldSize: {x: 1.3125, y: 0.8125}
+    newSize: {x: 1.3125, y: 0.8125}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 2.2491992, y: 1.1247374}
+  m_EdgeRadius: 0
 --- !u!1 &8815744848440482993
 GameObject:
   m_ObjectHideFlags: 0
