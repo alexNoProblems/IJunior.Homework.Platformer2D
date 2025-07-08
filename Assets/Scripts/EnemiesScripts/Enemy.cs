@@ -10,7 +10,7 @@ public class Enemy : MonoBehaviour
     private EnemyMover _mover;
     private bool _isDying = false;
 
-     public bool IsDying => _isDying;
+    public bool IsDying => _isDying;
 
     private void Awake()
     {
