@@ -5,7 +5,15 @@ public class GloveEnemyKiller : MonoBehaviour, ITriggerHandler2D
 {
     [SerializeField] private float _knockBackForce = 30f;
     [SerializeField] private float _knockBackVerticalFactor = 0.5f;
-    [SerializeField] private float _deathDelay = 0.5f;
+    [SerializeField] private float _deathDelay = 2f;
+
+    private Vector2 _knockDirection = Vector2.right;
+    private WaitForSeconds _waitForSeconds;
+
+    private void Awake()
+    {
+        _waitForSeconds = new WaitForSeconds(_deathDelay);
+    }
 
     public void HandleTriggerEnter2D(Collider2D collider2D)
     {
@@ -14,14 +22,25 @@ public class GloveEnemyKiller : MonoBehaviour, ITriggerHandler2D
         if (enemy != null)
         {
             KnockBack(enemy);
-            enemy.Die();
+            StartCoroutine(DieAfterDelay(enemy));
         }
+    }
+
+    public void SetKnockDirection(Vector2 direction)
+    {
+        _knockDirection = direction.normalized;
+    }
+
+    private IEnumerator DieAfterDelay(Enemy enemy)
+    {
+        yield return _waitForSeconds;
+
+        enemy.Die();
     }
 
     private void KnockBack(Enemy enemy)
     {
-        Vector2 direction = (enemy.transform.position - transform.position).normalized;
-        Vector2 knockBack = new Vector2(direction.x, _knockBackVerticalFactor).normalized * _knockBackForce;
+        Vector2 knockBack = new Vector2(_knockDirection.x, _knockBackVerticalFactor).normalized * _knockBackForce;
 
         EnemyMover mover = enemy.GetComponent<EnemyMover>();
 

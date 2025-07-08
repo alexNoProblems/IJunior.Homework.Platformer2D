@@ -3,7 +3,7 @@ using UnityEngine;
 [RequireComponent(typeof(PlayerMover), typeof(PlayerJumper), typeof(JumpSoundPlayer))]
 [RequireComponent(typeof(PlayerCollector), typeof(SpriteFlipper), typeof(BoxingGloveSoundPlayer))]
 [RequireComponent(typeof(Health), typeof(PlayerKiller), typeof(DeathSoundPlayer))]
-[RequireComponent(typeof(PlayerHealerHandler))]
+[RequireComponent(typeof(PlayerHealerHandler), typeof(GloveEnemyKiller))]
 public class Player : MonoBehaviour
 {
     [SerializeField] private InputReader _inputReader;
@@ -84,6 +84,15 @@ public class Player : MonoBehaviour
         if (_inputReader.PunchRequested)
         {
             int facingDirection = _spriteFlipper.FacingDirection;
+
+            GloveEnemyKiller killer = _glove.GetComponent<GloveEnemyKiller>();
+
+            if (killer != null)
+            {
+                Vector2 punchDirection = new Vector2(facingDirection, 0f);
+                killer.SetKnockDirection(punchDirection);
+            }
+
             _puncher.TryPunch(facingDirection);
             _inputReader.ClearPunchRequest();
         }
