@@ -3,6 +3,7 @@ using UnityEngine;
 [RequireComponent(typeof(PlayerMover), typeof(PlayerJumper), typeof(JumpSoundPlayer))]
 [RequireComponent(typeof(PlayerCollector), typeof(SpriteFlipper), typeof(BoxingGloveSoundPlayer))]
 [RequireComponent(typeof(Health), typeof(PlayerKiller), typeof(DeathSoundPlayer))]
+[RequireComponent(typeof(PlayerHealerHandler))]
 public class Player : MonoBehaviour
 {
     [SerializeField] private InputReader _inputReader;
@@ -11,7 +12,7 @@ public class Player : MonoBehaviour
     [SerializeField] private AudioClip _jumpSound;
     [SerializeField] private AudioClip _boxingGloveKickSound;
     [SerializeField] private AudioClip _deathSound;
-    [SerializeField] private CoinCollectSoundPlayer _coinSoundPlayer;
+    [SerializeField] private ItemsCollectSoundPlayer _coinSoundPlayer;
     [SerializeField] private Puncher _puncher;
     [SerializeField] private Glove _glove;
     [SerializeField] private Transform _gloveSpawnPoint;
@@ -26,6 +27,7 @@ public class Player : MonoBehaviour
     private SpriteFlipper _spriteFlipper;
     private Health _health;
     private PlayerKiller _playerKiller;
+    private PlayerHealerHandler _playerHealerHandler;
     private bool _isDead;
 
     private void Awake()
@@ -39,6 +41,7 @@ public class Player : MonoBehaviour
         _spriteFlipper = GetComponent<SpriteFlipper>();
         _health = GetComponent<Health>();
         _playerKiller = GetComponent<PlayerKiller>();
+        _playerHealerHandler = GetComponent<PlayerHealerHandler>();
 
         _jumper.Init(_groundChecker);
         _jumpSoundPlayer.Init(_jumper, _jumpSound);
@@ -48,6 +51,7 @@ public class Player : MonoBehaviour
         _puncher.Init(_glove, _gloveSpawnPoint);
         _health.Init(OnDeath);
         _playerKiller.Init(_playerAnimator, _deathDelay);
+        _playerHealerHandler.Init(_coinSoundPlayer);
     }
 
     private void FixedUpdate()

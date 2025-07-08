@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PlayerCollector : MonoBehaviour, ITriggerHandler2D
 {
-    private CoinCollectSoundPlayer _soundPlayer;
+    private ItemsCollectSoundPlayer _soundPlayer;
     private int _coinCount = 0;
 
     public void HandleTriggerEnter2D(Collider2D other)
@@ -15,12 +15,11 @@ public class PlayerCollector : MonoBehaviour, ITriggerHandler2D
             Debug.Log("Количество монет: " + _coinCount);
 
             _soundPlayer?.PlaySound();
-
             coin.Collect();
         }
     }
 
-    public void Init(CoinCollectSoundPlayer soundPlayer)
+    public void Init(ItemsCollectSoundPlayer soundPlayer)
     {
         _soundPlayer = soundPlayer;
     }

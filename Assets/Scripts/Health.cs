@@ -53,6 +53,14 @@ public class Health : MonoBehaviour
         _currentHealth = Mathf.Min(_currentHealth, _maxHealth);
     }
 
+    public void RestoreFullHealth()
+    {
+        if (_isDead)
+            return;
+
+        _currentHealth = _maxHealth;
+    }
+
     private void ResetInvulnerability()
     {
         _isInvulnerable = false;

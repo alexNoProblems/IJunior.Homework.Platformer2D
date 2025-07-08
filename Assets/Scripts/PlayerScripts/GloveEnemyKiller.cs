@@ -7,13 +7,6 @@ public class GloveEnemyKiller : MonoBehaviour, ITriggerHandler2D
     [SerializeField] private float _knockBackVerticalFactor = 0.5f;
     [SerializeField] private float _deathDelay = 0.5f;
 
-    private WaitForSeconds _waitForSeconds;
-
-    private void Awake()
-    {
-        _waitForSeconds = new WaitForSeconds(_deathDelay);
-    }
-
     public void HandleTriggerEnter2D(Collider2D collider2D)
     {
         Enemy enemy = collider2D.GetComponent<Enemy>();
@@ -21,7 +14,7 @@ public class GloveEnemyKiller : MonoBehaviour, ITriggerHandler2D
         if (enemy != null)
         {
             KnockBack(enemy);
-            StartCoroutine(KillWithDelay(enemy));
+            enemy.Die();
         }
     }
 
@@ -34,13 +27,5 @@ public class GloveEnemyKiller : MonoBehaviour, ITriggerHandler2D
 
         if (mover != null)
             mover.AddForce(knockBack);
-    }
-
-    private IEnumerator KillWithDelay(Enemy enemy)
-    {
-        yield return _waitForSeconds;
-
-        if (enemy != null)
-            enemy.Die();
     }
 }

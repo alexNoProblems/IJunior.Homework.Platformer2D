@@ -5,9 +5,12 @@ public class Enemy : MonoBehaviour
 {
     [SerializeField] private WallChecker _wallChecker;
     [SerializeField] private EnemyAnimator _enemyAnimator;
-    [SerializeField] private float _deathDelay = 2f;
+    [SerializeField] private float _deathDelay = 0.5f;
 
     private EnemyMover _mover;
+    private bool _isDying = false;
+
+     public bool IsDying => _isDying;
 
     private void Awake()
     {
@@ -26,6 +29,7 @@ public class Enemy : MonoBehaviour
         _mover.Stop();
 
         SpriteFlipper spriteFlipper = GetComponent<SpriteFlipper>();
+
         if (spriteFlipper != null)
             spriteFlipper.FlipUpsideDown();
 

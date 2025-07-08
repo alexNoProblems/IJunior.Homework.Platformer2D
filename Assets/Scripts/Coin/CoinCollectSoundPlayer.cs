@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(AudioSource))]
-public class CoinCollectSoundPlayer : MonoBehaviour
+public class ItemsCollectSoundPlayer : MonoBehaviour
 {
     [SerializeField] private AudioClip _collectSound;
 
