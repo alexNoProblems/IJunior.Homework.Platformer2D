@@ -1,56 +1,58 @@
+using System;
 using UnityEngine;
+using System.Collections;
 
-[RequireComponent(typeof(DamageFlasher))]
 public class Health : MonoBehaviour
 {
     [SerializeField] private int _maxHealth = 5;
     [SerializeField] private int _minHealth = 0;
     [SerializeField] private float _invulnerabilityDuration = 2f;
 
+    private Coroutine _invulnerabilityCoroutine;
+    private WaitForSeconds _waitForSeconds;
     private int _currentHealth;
     private bool _isInvulnerable = false;
     private bool _isDead = false;
 
-    private DamageFlasher _flasher;
-    private System.Action _onDeath;
+    public event Action OnDamaged;
+    public event Action OnDeath;
 
     private void Awake()
     {
         _currentHealth = _maxHealth;
-        _flasher = GetComponent<DamageFlasher>();
-    }
-
-    public void Init(System.Action onDeath)
-    {
-        _onDeath = onDeath;
+        _waitForSeconds = new WaitForSeconds(_invulnerabilityDuration);
     }
 
     public void TakeDamage(int damage)
     {
-        if (_isInvulnerable || _isDead)
+        if (damage < 0 || _isInvulnerable || _isDead)
             return;
 
-        _currentHealth -= damage;
-        _currentHealth = Mathf.Max(_currentHealth, _minHealth);
+        _currentHealth = Mathf.Clamp(_currentHealth - damage, _minHealth, _maxHealth);
 
-        if (_flasher != null)
-            _flasher.Flash();
+        OnDamaged?.Invoke();
 
-        if (_currentHealth == 0)
+        if (_currentHealth == _minHealth)
         {
             Die();
         }
         else
         {
             _isInvulnerable = true;
-            Invoke(nameof(ResetInvulnerability), _invulnerabilityDuration);
+
+            if (_invulnerabilityCoroutine != null)
+                StopCoroutine(_invulnerabilityCoroutine);
+
+            _invulnerabilityCoroutine = StartCoroutine(InvulnerabilityRoutine());
         }
     }
 
     public void Heal(int healValue)
     {
-        _currentHealth += healValue;
-        _currentHealth = Mathf.Min(_currentHealth, _maxHealth);
+        if (healValue < 0 || _isDead)
+            return;
+
+        _currentHealth = Mathf.Clamp(_currentHealth + healValue, _minHealth, _maxHealth);
     }
 
     public void RestoreFullHealth()
@@ -61,15 +63,17 @@ public class Health : MonoBehaviour
         _currentHealth = _maxHealth;
     }
 
-    private void ResetInvulnerability()
+    private IEnumerator InvulnerabilityRoutine()
     {
+        yield return _waitForSeconds;
+
         _isInvulnerable = false;
+        _invulnerabilityCoroutine = null;
     }
 
     private void Die()
     {
         _isDead = true;
-        _flasher?.StopFlashing();
-        _onDeath?.Invoke();
+        OnDeath?.Invoke();
     }
 }

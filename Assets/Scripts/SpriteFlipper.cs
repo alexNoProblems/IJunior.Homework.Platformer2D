@@ -23,7 +23,12 @@ public class SpriteFlipper : MonoBehaviour
         if (Mathf.Approximately(directionX, 0f))
             return;
 
-        _isFacingRight = directionX > 0f;
+        bool shouldFaceRight = directionX > 0f;
+
+        if (_isFacingRight == shouldFaceRight)
+            return;
+
+        _isFacingRight = shouldFaceRight;
         transform.rotation = directionX > 0f ? _facingRight : _facingLeft;
     }
 

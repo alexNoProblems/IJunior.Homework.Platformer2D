@@ -49,38 +49,58 @@ public class Player : MonoBehaviour
         _deathSoundPlayer.Init(_playerKiller, _deathSound);
         _collector.Init(_coinSoundPlayer);
         _puncher.Init(_glove, _gloveSpawnPoint);
-        _health.Init(OnDeath);
         _playerKiller.Init(_playerAnimator, _deathDelay);
         _playerHealerHandler.Init(_coinSoundPlayer);
+
+        _health.OnDeath += OnDeath;
     }
 
     private void FixedUpdate()
     {
         if (_isDead)
             return;
-        
+
+        HandleMovement();
+        HandleJump();
+        HandlePunch();
+    }
+
+    private void OnDestroy()
+    {
+        if (_health != null)
+            _health.OnDeath -= OnDeath;  
+    }
+
+    private void HandleMovement()
+    {
         float horizontal = _inputReader.Movement.x;
 
-        if (!_inputReader.PunchRequested)
-        {
-            _mover.Move(horizontal);
-
-            if (horizontal != 0)
-                _spriteFlipper.FlipRightLeft(horizontal);
-        }
-        else
+        if (_inputReader.PunchRequested)
         {
             _mover.Move(0);
         }
+        else
+        {
+            _mover.Move(horizontal);
 
-        if (_inputReader.JumpRequested && _jumper.IsGrounded)
-            _jumper.Jump(horizontal);
-
+            if (Mathf.Approximately(horizontal, 0f) == false)
+                _spriteFlipper.FlipRightLeft(horizontal);
+        }
+        
         _playerAnimator.SetMoveSpeed(Mathf.Abs(horizontal));
         _playerAnimator.SetJumpState(_jumper.IsJumping);
+    }
 
+    private void HandleJump()
+    {
+        if (_inputReader.JumpRequested && _jumper.IsGrounded)
+            _jumper.Jump(_inputReader.Movement.x);
+        
         _inputReader.ClearJumpRequest();
+    }
 
+    private void HandlePunch()
+    {
         if (_inputReader.PunchRequested)
         {
             int facingDirection = _spriteFlipper.FacingDirection;
