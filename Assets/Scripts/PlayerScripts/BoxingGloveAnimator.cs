@@ -1,11 +1,8 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Animator))]
-public class PlayerAnimator : MonoBehaviour
+public class BoxingGloveAnimator : MonoBehaviour
 {
-    private static readonly int _speedHash = Animator.StringToHash("Speed");
-    private static readonly int _jumpHash = Animator.StringToHash("IsJumping");
-    private static readonly int _deathHash = Animator.StringToHash("Death");
     private static readonly int _punchRightHash = Animator.StringToHash("PunchRight");
     private static readonly int _punchLeftHash = Animator.StringToHash("PunchLeft");
 
@@ -16,23 +13,11 @@ public class PlayerAnimator : MonoBehaviour
         _animator = GetComponent<Animator>();
     }
 
-    public void SetMoveSpeed(float speed)
-    {
-        _animator.SetFloat(_speedHash, speed);
-    }
-
-    public void SetJumpState(bool isJumping)
-    {
-        _animator.SetBool(_jumpHash, isJumping);
-    }
-
-    public void PlayDeath()
-    {
-        _animator.SetTrigger(_deathHash);
-    }
-
     public void PlayPunch(float facingDirection)
     {
+        if (_animator == null)
+            return;
+        
         _animator.ResetTrigger(_punchLeftHash);
         _animator.ResetTrigger(_punchRightHash);
 

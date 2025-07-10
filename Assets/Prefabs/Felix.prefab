@@ -460,7 +460,6 @@ GameObject:
   - component: {fileID: 6271222264047669967}
   - component: {fileID: 5177050377462864476}
   - component: {fileID: 7288095613514910689}
-  - component: {fileID: 3004550894999185805}
   - component: {fileID: 7236247147295832332}
   m_Layer: 0
   m_Name: BoxingGlove1
@@ -587,27 +586,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82f31f92934834c4d9b24ecdf0158198, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!95 &3004550894999185805
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7811617812972127483}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: e673c0851eadc47e887fe4466f2323f1, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!61 &7236247147295832332
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: BoxingGlovePunchLeft
+  m_Name: BoxingGlovePunchLeftAnimation
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -22,7 +22,7 @@ AnimationClip:
     curve:
     - time: 0
       value: {fileID: 21300000, guid: e6c213d4e94034d5980328b5e7f3f0a6, type: 3}
-    - time: 0.083333336
+    - time: 0.06666667
       value: {fileID: 21300000, guid: dc4bcc564aa9f4bd4b22a51604230982, type: 3}
     - time: 0.16666667
       value: {fileID: 21300000, guid: 8947f480bb262435ea7a50b133446f88, type: 3}
