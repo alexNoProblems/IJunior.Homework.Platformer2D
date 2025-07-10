@@ -15,6 +15,11 @@ public class GloveEnemyKiller : MonoBehaviour, ITriggerHandler2D
         _waitForSeconds = new WaitForSeconds(_deathDelay);
     }
 
+    public void PrepareForAttack(Vector2 direction)
+    {
+        _knockDirection = direction.normalized;
+    }
+
     public void HandleTriggerEnter2D(Collider2D collider2D)
     {
         Enemy enemy = collider2D.GetComponent<Enemy>();

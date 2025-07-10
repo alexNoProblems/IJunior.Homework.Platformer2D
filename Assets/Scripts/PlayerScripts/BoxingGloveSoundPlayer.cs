@@ -3,12 +3,11 @@ using UnityEngine;
 [RequireComponent(typeof(AudioSource))]
 public class BoxingGloveSoundPlayer : MonoBehaviour
 {
-    private AudioClip _boxingGloveKickSound;
+    [SerializeField] private AudioClip _boxingGloveKickSound;
     private AudioSource _audioSource;
 
-    public void Init(Puncher puncher, AudioClip boxingGloveKickSound)
+    public void Init(Puncher puncher)
     {
-        _boxingGloveKickSound = boxingGloveKickSound;
         _audioSource = GetComponent<AudioSource>();
 
         puncher.OnKick += PlayKickSound;

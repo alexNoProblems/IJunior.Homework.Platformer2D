@@ -3,12 +3,12 @@ using UnityEngine;
 [RequireComponent(typeof(AudioSource))]
 public class JumpSoundPlayer : MonoBehaviour
 {
-    private AudioClip _jumpSound;
+    [SerializeField] private AudioClip _jumpSound;
+
     private AudioSource _audioSource;
 
-    public void Init(PlayerJumper jumper, AudioClip jumpSound)
+    public void Init(PlayerJumper jumper)
     {
-        _jumpSound = jumpSound;
         _audioSource = GetComponent<AudioSource>();
 
         jumper.OnJumped += PlayJumpSound;

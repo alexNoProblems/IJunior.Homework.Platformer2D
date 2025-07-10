@@ -4069,6 +4069,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Felix
       objectReference: {fileID: 0}
+    - target: {fileID: 2806922517738832052, guid: 47e634773c8db41408670d7e128c76d3, type: 3}
+      propertyPath: _boxingGloveKickSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 58a2f3eb38ca2450ebbcf40a098ab59d, type: 3}
     - target: {fileID: 3927693720122286686, guid: 47e634773c8db41408670d7e128c76d3, type: 3}
       propertyPath: _maxHealth
       value: 5
@@ -4252,6 +4256,7 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 6162587041082957066, guid: 47e634773c8db41408670d7e128c76d3, type: 3}
     - {fileID: -1999713564748870685, guid: 47e634773c8db41408670d7e128c76d3, type: 3}
+    - {fileID: 2281238631601849256, guid: 47e634773c8db41408670d7e128c76d3, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 6470128242222275962, guid: 47e634773c8db41408670d7e128c76d3, type: 3}
@@ -22523,9 +22528,6 @@ MonoBehaviour:
   _inputReader: {fileID: 2118956693}
   _groundChecker: {fileID: 984876550}
   _playerAnimator: {fileID: 906231525}
-  _jumpSound: {fileID: 8300000, guid: 0de38e4824efe4386893641966ade60d, type: 3}
-  _boxingGloveKickSound: {fileID: 8300000, guid: 58a2f3eb38ca2450ebbcf40a098ab59d, type: 3}
-  _deathSound: {fileID: 8300000, guid: 517769fa58c70422e895e743b58479ad, type: 3}
   _coinSoundPlayer: {fileID: 1814726160}
   _puncher: {fileID: 2015127893}
   _glove: {fileID: 2015127892}
@@ -22756,6 +22758,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5118cd5265914ab1ae564a14ec2ef5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _jumpSound: {fileID: 8300000, guid: 0de38e4824efe4386893641966ade60d, type: 3}
 --- !u!114 &1814726160
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22807,6 +22810,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25bc8875713304ecf80c3327b72bd7be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _deathSound: {fileID: 8300000, guid: 517769fa58c70422e895e743b58479ad, type: 3}
 --- !u!114 &1814726207
 MonoBehaviour:
   m_ObjectHideFlags: 0

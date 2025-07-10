@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 7905697328873600906}
   - component: {fileID: 4490389060394405468}
   - component: {fileID: -3848242834085430186}
-  - component: {fileID: 6692183886518749707}
   - component: {fileID: 3968258737724757063}
   - component: {fileID: 282134829604449265}
   - component: {fileID: 3927693720122286686}
@@ -209,19 +208,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82f31f92934834c4d9b24ecdf0158198, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &6692183886518749707
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2749133815102990133}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 35edc7f6719074a33b2889f339fbd262, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _damage: 1
 --- !u!114 &3968258737724757063
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -386,6 +372,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85007409c0d43420881f8e74cce7e7ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _boxingGloveKickSound: {fileID: 0}
 --- !u!114 &2281238631601849256
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -398,6 +385,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5118cd5265914ab1ae564a14ec2ef5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _jumpSound: {fileID: 0}
 --- !u!114 &-1999713564748870685
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -584,6 +572,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfa97bed7a1db457eab89ae7eeed144a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _knockBackForce: 30
+  _knockBackVerticalFactor: 0.5
+  _deathDelay: 2
 --- !u!114 &7288095613514910689
 MonoBehaviour:
   m_ObjectHideFlags: 0

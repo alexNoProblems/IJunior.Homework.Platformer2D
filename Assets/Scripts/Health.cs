@@ -14,6 +14,8 @@ public class Health : MonoBehaviour
     private bool _isInvulnerable = false;
     private bool _isDead = false;
 
+    public bool IsDead => _isDead;
+
     public event Action OnDamaged;
     public event Action OnDeath;
 
@@ -29,6 +31,8 @@ public class Health : MonoBehaviour
             return;
 
         _currentHealth = Mathf.Clamp(_currentHealth - damage, _minHealth, _maxHealth);
+
+        Debug.Log(_currentHealth);
 
         OnDamaged?.Invoke();
 

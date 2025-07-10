@@ -9,9 +9,6 @@ public class Player : MonoBehaviour
     [SerializeField] private InputReader _inputReader;
     [SerializeField] private GroundChecker _groundChecker;
     [SerializeField] private PlayerAnimator _playerAnimator;
-    [SerializeField] private AudioClip _jumpSound;
-    [SerializeField] private AudioClip _boxingGloveKickSound;
-    [SerializeField] private AudioClip _deathSound;
     [SerializeField] private ItemsCollectSoundPlayer _coinSoundPlayer;
     [SerializeField] private Puncher _puncher;
     [SerializeField] private Glove _glove;
@@ -28,7 +25,6 @@ public class Player : MonoBehaviour
     private Health _health;
     private PlayerKiller _playerKiller;
     private PlayerHealerHandler _playerHealerHandler;
-    private bool _isDead;
 
     private void Awake()
     {
@@ -44,9 +40,9 @@ public class Player : MonoBehaviour
         _playerHealerHandler = GetComponent<PlayerHealerHandler>();
 
         _jumper.Init(_groundChecker);
-        _jumpSoundPlayer.Init(_jumper, _jumpSound);
-        _boxingGloveSoundPlayer.Init(_puncher, _boxingGloveKickSound);
-        _deathSoundPlayer.Init(_playerKiller, _deathSound);
+        _jumpSoundPlayer.Init(_jumper);
+        _boxingGloveSoundPlayer.Init(_puncher);
+        _deathSoundPlayer.Init(_playerKiller);
         _collector.Init(_coinSoundPlayer);
         _puncher.Init(_glove, _gloveSpawnPoint);
         _playerKiller.Init(_playerAnimator, _deathDelay);
@@ -57,7 +53,7 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (_isDead)
+        if (_health.IsDead)
             return;
 
         HandleMovement();
@@ -105,14 +101,6 @@ public class Player : MonoBehaviour
         {
             int facingDirection = _spriteFlipper.FacingDirection;
 
-            GloveEnemyKiller killer = _glove.GetComponent<GloveEnemyKiller>();
-
-            if (killer != null)
-            {
-                Vector2 punchDirection = new Vector2(facingDirection, 0f);
-                killer.SetKnockDirection(punchDirection);
-            }
-
             _puncher.TryPunch(facingDirection);
             _inputReader.ClearPunchRequest();
         }
@@ -120,7 +108,6 @@ public class Player : MonoBehaviour
 
     private void OnDeath()
     {
-        _isDead = true;
         _playerKiller.Die();
     }
 }

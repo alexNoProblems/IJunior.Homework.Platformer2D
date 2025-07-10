@@ -12,12 +12,14 @@ public class Puncher : MonoBehaviour
     private Glove _glove;
     private Animator _animator;
     private Transform _gloveSpawnPoint;
+    private GloveEnemyKiller _gloveEnemyKiller;
 
     public void Init(Glove glove, Transform gloveSpawnPoint)
     {
         _glove = glove;
         _gloveSpawnPoint = gloveSpawnPoint;
         _animator = glove.GetComponent<Animator>();
+        _gloveEnemyKiller = glove.GetComponent<GloveEnemyKiller>();
 
         _glove.gameObject.SetActive(false);
     }
@@ -27,6 +29,12 @@ public class Puncher : MonoBehaviour
         if (_glove == null || _animator == null || _gloveSpawnPoint == null)
             return;
 
+        if (_gloveEnemyKiller != null)
+        {
+            Vector2 punchDirection = new Vector2(Mathf.Sign(facingDirection), 0f);
+            _gloveEnemyKiller.PrepareForAttack(punchDirection);
+        }
+        
         _glove.transform.position = _gloveSpawnPoint.position;
         _glove.transform.rotation = _gloveSpawnPoint.rotation;
 

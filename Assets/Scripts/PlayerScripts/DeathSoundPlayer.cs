@@ -3,12 +3,11 @@ using UnityEngine;
 [RequireComponent(typeof(AudioSource))]
 public class DeathSoundPlayer : MonoBehaviour
 {
-    private AudioClip _deathSound;
+    [SerializeField] private AudioClip _deathSound;
     private AudioSource _audioSource;
 
-    public void Init(PlayerKiller playerKiller, AudioClip deathSound)
+    public void Init(PlayerKiller playerKiller)
     {
-        _deathSound = deathSound;
         _audioSource = GetComponent<AudioSource>();
 
         playerKiller.OnDie += PlayDeathSound;
