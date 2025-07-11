@@ -35,6 +35,11 @@ public class CameraFollower : MonoBehaviour
         transform.position = desiredPosition;
     }
 
+    public void SetTarget(Transform target)
+    {
+        _target = target;
+    }
+
     private Vector3 GetCameraTargetPosition(Vector3 targetPosition)
     {
         Vector3 currentPosition = transform.position;

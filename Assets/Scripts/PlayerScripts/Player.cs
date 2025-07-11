@@ -12,6 +12,7 @@ public class Player : MonoBehaviour
     [SerializeField] private ItemsCollectSoundPlayer _coinSoundPlayer;
     [SerializeField] private Puncher _puncher;
     [SerializeField] private Glove _glove;
+    [SerializeField] private CameraFollower _cameraFollower;
     [SerializeField] private Transform _gloveSpawnPoint;
     [SerializeField] private float _deathDelay = 2f;
 
@@ -109,5 +110,6 @@ public class Player : MonoBehaviour
     private void OnDeath()
     {
         _playerKiller.Die();
+        _cameraFollower.SetTarget(null);
     }
 }

@@ -4,17 +4,16 @@ using System.Collections;
 [RequireComponent(typeof(Health))]
 public class DamageFlasher : MonoBehaviour
 {
+    [SerializeField] private SpriteRenderer _spriteRenderer;
     [SerializeField] private float _duration = 2f;
     [SerializeField] private float _flashInterval = 0.1f;
 
-    private SpriteRenderer _spriteRenderer;
     private Coroutine _flashCoroutine;
     private WaitForSeconds _waitForSeconds;
     private bool _isDead = false;
 
     private void Awake()
     {
-        _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         _waitForSeconds = new WaitForSeconds(_flashInterval);
 
         Health health = GetComponent<Health>();

@@ -4057,6 +4057,10 @@ PrefabInstance:
       propertyPath: _coinCollectSound
       value: 
       objectReference: {fileID: 1814726150}
+    - target: {fileID: 282134829604449265, guid: 47e634773c8db41408670d7e128c76d3, type: 3}
+      propertyPath: _spriteRenderer
+      value: 
+      objectReference: {fileID: 906231526}
     - target: {fileID: 466265617462945971, guid: 47e634773c8db41408670d7e128c76d3, type: 3}
       propertyPath: m_Size.x
       value: 1.3125
@@ -22551,6 +22555,7 @@ MonoBehaviour:
   _coinSoundPlayer: {fileID: 1814726160}
   _puncher: {fileID: 2015127893}
   _glove: {fileID: 2015127892}
+  _cameraFollower: {fileID: 519420033}
   _gloveSpawnPoint: {fileID: 951602562}
   _deathDelay: 2
 --- !u!95 &1814726145
