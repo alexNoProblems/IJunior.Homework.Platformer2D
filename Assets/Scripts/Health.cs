@@ -32,8 +32,6 @@ public class Health : MonoBehaviour
 
         _currentHealth = Mathf.Clamp(_currentHealth - damage, _minHealth, _maxHealth);
 
-        Debug.Log(_currentHealth);
-
         OnDamaged?.Invoke();
 
         if (_currentHealth == _minHealth)

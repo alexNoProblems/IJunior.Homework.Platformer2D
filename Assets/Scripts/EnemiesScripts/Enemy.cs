@@ -1,6 +1,7 @@
 using UnityEngine;
 
-[RequireComponent(typeof(EnemyMover), typeof(SpriteFlipper))]
+[RequireComponent(typeof(EnemyMover), typeof(SpriteFlipper), typeof(EnemyPatroller))]
+[RequireComponent(typeof(EnemyChaser))]
 public class Enemy : MonoBehaviour
 {
     [SerializeField] private WallChecker _wallChecker;
@@ -8,6 +9,9 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float _deathDelay = 0.5f;
 
     private EnemyMover _mover;
+    private EnemyPatroller _patroller;
+    private EnemyChaser _chaser;
+    private SpriteFlipper _spriteFlipper;
     private bool _isDying = false;
 
     public bool IsDying => _isDying;
@@ -15,23 +19,36 @@ public class Enemy : MonoBehaviour
     private void Awake()
     {
         _mover = GetComponent<EnemyMover>();
+        _patroller = GetComponent<EnemyPatroller>();
+        _chaser = GetComponent<EnemyChaser>();
+        _spriteFlipper = GetComponent<SpriteFlipper>();
     }
 
     private void FixedUpdate()
     {
+        if (_isDying == true)
+            return;
+
         float speedX = Mathf.Abs(_mover.Velocity.x);
 
         _enemyAnimator.UpdateSpeed(speedX);
+
+        if (_chaser != null && _chaser.IsChasing)
+            return;
+        
+        if (_patroller != null)
+        {
+            _patroller.Patrol(Time.fixedDeltaTime);
+        }
     }
 
     public void Die()
     {
+        _isDying = true;
         _mover.Stop();
 
-        SpriteFlipper spriteFlipper = GetComponent<SpriteFlipper>();
-
-        if (spriteFlipper != null)
-            spriteFlipper.FlipUpsideDown();
+        if (_spriteFlipper != null)
+            _spriteFlipper.FlipVertical();
 
         Collider2D collider = GetComponent<Collider2D>();
 

@@ -4,9 +4,8 @@ using UnityEngine;
 public class EnemyChaser : MonoBehaviour
 {
     [SerializeField] private float _chaseSpeed = 3f;
-    [SerializeField] private float _detectionDistance = 3f;
     [SerializeField] private float _losePlayerDistance = 4f;
-    [SerializeField] private Vector2 _detectionBoxSize = new Vector2(2f, 2f);
+    [SerializeField] private PlayerDetector _playerDetector;
 
     private EnemyMover _mover;
     private SpriteFlipper _spriteFlipper;
@@ -27,7 +26,13 @@ public class EnemyChaser : MonoBehaviour
     {
         if (_targetPlayer == null)
         {
-            TryDetectedPlayer();
+            _targetPlayer = _playerDetector.TryDetectPlayer(transform.position);
+
+            if (_targetPlayer != null)
+            {
+                float directionToPlayer = _targetPlayer.position.x - transform.position.x;
+                _spriteFlipper.FlipHorizontal(directionToPlayer);
+            }
         }
         else
         {
@@ -37,45 +42,13 @@ public class EnemyChaser : MonoBehaviour
 
                 return;
             }
-        }
 
-        ChasePlayer();
-    }
-
-    private void TryDetectedPlayer()
-    {
-        TryDetectInDirection(Vector2.right);
-        TryDetectInDirection(Vector2.left);
-    }
-
-    private void TryDetectInDirection(Vector2 direction)
-    {
-        float halfDetectionDistance = _detectionDistance / 2;
-        Vector2 origin = (Vector2)transform.position + direction * halfDetectionDistance;
-
-        RaycastHit2D hit = Physics2D.BoxCast(origin, _detectionBoxSize, 0f, direction, 0f);
-
-        if (hit.collider != null)
-        {
-            Player player = hit.collider.GetComponent<Player>();
-
-            if (player != null && player.gameObject.activeInHierarchy)
-            {
-                _targetPlayer = player.transform;
-
-                float directionToPlayer = _targetPlayer.position.x - transform.position.x;
-                _spriteFlipper.FlipRightLeft(directionToPlayer);
-
-                return;
-            }
+            ChasePlayer();
         }
     }
 
     private void ChasePlayer()
     {
-        if (_targetPlayer == null)
-            return;
-
         Vector2 direction = (_targetPlayer.position - transform.position).normalized;
         Vector2 velocity = new Vector2(direction.x * _chaseSpeed, _mover.CurrentYVelocity);
 

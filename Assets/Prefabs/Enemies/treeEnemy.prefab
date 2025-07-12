@@ -180,6 +180,7 @@ GameObject:
   - component: {fileID: 9015333829036065419}
   - component: {fileID: 8261516992657472707}
   - component: {fileID: 5855732305063783983}
+  - component: {fileID: -5768677179330436661}
   - component: {fileID: 403267281143411074}
   - component: {fileID: 809018107578383756}
   - component: {fileID: -3462069026328352548}
@@ -338,9 +339,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _chaseSpeed: 4
-  _detectionDistance: 3
   _losePlayerDistance: 4
-  _detectionBoxSize: {x: 3, y: 1}
+  _playerDetector: {fileID: -5768677179330436661}
+--- !u!114 &-5768677179330436661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8085658360426245957}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81d36a981281e4bac93d5c253de52c0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _detectionDistance: 3
+  _detectionBoxSize: {x: 3, y: 3}
 --- !u!114 &403267281143411074
 MonoBehaviour:
   m_ObjectHideFlags: 0

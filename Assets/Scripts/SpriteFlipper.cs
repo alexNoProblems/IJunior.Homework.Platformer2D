@@ -2,6 +2,10 @@ using UnityEngine;
 
 public class SpriteFlipper : MonoBehaviour
 {
+    private const float RightRotationY = 0f;
+    private const float LeftRotationY = 180f;
+    private const float UpsideDownRotationZ = 180f;
+    
     private Quaternion _facingRight;
     private Quaternion _facingLeft;
     private bool _isFacingRight = true;
@@ -12,13 +16,13 @@ public class SpriteFlipper : MonoBehaviour
         _facingLeft = Quaternion.Euler(0, 180, 0);
     }
 
-    public void FlipUpsideDown()
+    public void FlipVertical()
     {
-        float yRotation = _isFacingRight ? 0f : 180f;
-        transform.rotation = Quaternion.Euler(0f, yRotation, 180f);
+        float yRotation = _isFacingRight ? RightRotationY : LeftRotationY;
+        transform.rotation = Quaternion.Euler(0f, yRotation, UpsideDownRotationZ);
     }
 
-    public void FlipRightLeft(float directionX)
+    public void FlipHorizontal(float directionX)
     {
         if (Mathf.Approximately(directionX, 0f))
             return;

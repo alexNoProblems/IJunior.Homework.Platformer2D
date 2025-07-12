@@ -22,9 +22,4 @@ public class EnemyMover : MonoBehaviour
     {
         _rigidbody2D.velocity = Vector2.zero;
     }
-
-    public void AddForce(Vector2 force)
-    {
-        _rigidbody2D.AddForce(force, ForceMode2D.Impulse);
-    }
 }

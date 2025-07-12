@@ -6,11 +6,11 @@ public class DeathSoundPlayer : MonoBehaviour
     [SerializeField] private AudioClip _deathSound;
     private AudioSource _audioSource;
 
-    public void Init(PlayerKiller playerKiller)
+    public void Init(Health health)
     {
         _audioSource = GetComponent<AudioSource>();
 
-        playerKiller.OnDie += PlayDeathSound;
+        health.OnDeath += PlayDeathSound;
     }
 
     private void PlayDeathSound()

@@ -43,7 +43,7 @@ public class Player : MonoBehaviour
         _jumper.Init(_groundChecker);
         _jumpSoundPlayer.Init(_jumper);
         _boxingGloveSoundPlayer.Init(_puncher);
-        _deathSoundPlayer.Init(_playerKiller);
+        _deathSoundPlayer.Init(_health);
         _collector.Init(_coinSoundPlayer);
         _puncher.Init(_glove, _gloveSpawnPoint);
         _playerKiller.Init(_playerAnimator, _deathDelay);
@@ -81,7 +81,7 @@ public class Player : MonoBehaviour
             _mover.Move(horizontal);
 
             if (Mathf.Approximately(horizontal, 0f) == false)
-                _spriteFlipper.FlipRightLeft(horizontal);
+                _spriteFlipper.FlipHorizontal(horizontal);
         }
         
         _playerAnimator.SetMoveSpeed(Mathf.Abs(horizontal));

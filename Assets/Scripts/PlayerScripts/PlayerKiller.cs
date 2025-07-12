@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class PlayerKiller : MonoBehaviour
 {
-    public event Action OnDie;
-
     private PlayerAnimator _animator;
     private WaitForSeconds _waitForSeconds;
     private float _deathDelay;
+
+    private void Awake()
+    {
+        _waitForSeconds = new WaitForSeconds(_deathDelay);
+    }
 
     public void Init(PlayerAnimator animator, float deathDelay)
     {
@@ -19,7 +22,6 @@ public class PlayerKiller : MonoBehaviour
 
     public void Die()
     {
-        OnDie?.Invoke();
         _animator.PlayDeath();
 
         StartCoroutine(HandleDeathSequence());
@@ -34,6 +36,6 @@ public class PlayerKiller : MonoBehaviour
         if (collider2D != null)
             collider2D.enabled = false;
         
-        Destroy(gameObject, _deathDelay);
+        Destroy(gameObject);
     }
 }

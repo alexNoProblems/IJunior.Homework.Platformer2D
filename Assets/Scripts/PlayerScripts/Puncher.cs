@@ -4,12 +4,12 @@ using System;
 [RequireComponent(typeof(BoxingGloveAnimator))]
 public class Puncher : MonoBehaviour
 {
-    public event Action OnKick;
-
     private Glove _glove;
     private BoxingGloveAnimator _gloveAnimator;
     private Transform _gloveSpawnPoint;
     private GloveEnemyKiller _gloveEnemyKiller;
+
+     public event Action OnKick;
 
     public void Init(Glove glove, Transform gloveSpawnPoint)
     {

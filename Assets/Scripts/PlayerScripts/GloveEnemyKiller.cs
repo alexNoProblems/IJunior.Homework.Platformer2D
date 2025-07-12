@@ -45,11 +45,13 @@ public class GloveEnemyKiller : MonoBehaviour, ITriggerHandler2D
 
     private void KnockBack(Enemy enemy)
     {
+        Rigidbody2D rigidbody2D = enemy.GetComponent<Rigidbody2D>();
+
+        if (rigidbody2D == null)
+            return;
+        
         Vector2 knockBack = new Vector2(_knockDirection.x, _knockBackVerticalFactor).normalized * _knockBackForce;
 
-        EnemyMover mover = enemy.GetComponent<EnemyMover>();
-
-        if (mover != null)
-            mover.AddForce(knockBack);
+        rigidbody2D.AddForce(knockBack, ForceMode2D.Impulse);
     }
 }

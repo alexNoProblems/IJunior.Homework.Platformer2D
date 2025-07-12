@@ -1,11 +1,9 @@
 using UnityEngine;
 using System.Collections;
 
-[RequireComponent(typeof(EnemyMover), typeof(Enemy), typeof(EnemyChaser))]
+[RequireComponent(typeof(EnemyMover))]
 public class EnemyPatroller : MonoBehaviour
 {
-    private const int FlipMultiplier = -1;
-
     [SerializeField] private float _moveSpeed = 2f;
     [SerializeField] private float _patrolDuration = 5f;
     [SerializeField] private float _waitDuration = 1f;
@@ -13,54 +11,42 @@ public class EnemyPatroller : MonoBehaviour
     [SerializeField] private SpriteFlipper _spriteFlipper;
 
     private EnemyMover _mover;
-    private WaitForSeconds _waitForSeconds;
-    private EnemyChaser _enemyChaser;
-    private bool _isMoving = true;
-    private float _patrolTimer = 0f;
+    private float _timer = 0f;
+    private float _waitTimer = 0f;
     private int _direction = 1;
+    private bool _isWaiting = false;
 
-    private void Start()
+    private void Awake()
     {
         _mover = GetComponent<EnemyMover>();
-        _enemyChaser = GetComponent<EnemyChaser>();
-        _waitForSeconds = new WaitForSeconds(_waitDuration);
     }
 
-    private void FixedUpdate()
+    public void Patrol(float deltaTime)
     {
-        Enemy enemy = GetComponent<Enemy>();
-
-        if (enemy != null && enemy.IsDying)
-            return;
-        
-        if (_enemyChaser != null && _enemyChaser.IsChasing)
-            return;
-        
-        if (!_isMoving)
-            return;
-        
-        _patrolTimer += Time.deltaTime;
-        _mover.Move(new Vector2(_direction * _moveSpeed, _mover.CurrentYVelocity));
-
-        if (_enemyChaser != null && !_enemyChaser.IsChasing)
-            _spriteFlipper.FlipRightLeft(_direction);
-        
-        if (_patrolTimer >= _patrolDuration || _wallChecker.IsWallAhead(_direction))
+        if (_isWaiting == true)
         {
-            _isMoving = false;
-            StartCoroutine(WaitAndTurn());
+            _waitTimer += deltaTime;
+
+            if (_waitTimer >= _waitDuration)
+            {
+                _isWaiting = false;
+                _waitTimer = 0f;
+                _direction *= -1;
+                _spriteFlipper.FlipHorizontal(_direction);
+            }
+
+            return;
         }
-    }
 
-    private IEnumerator WaitAndTurn()
-    {
-        _mover.Stop();
+        _timer += deltaTime;
+        _mover.Move(new Vector2(_direction * _moveSpeed, _mover.CurrentYVelocity));
+        _spriteFlipper.FlipHorizontal(_direction);
 
-        yield return _waitForSeconds;
-
-        _direction *= -1;
-        _spriteFlipper.FlipRightLeft(_direction);
-        _patrolTimer = 0f;
-        _isMoving = true;
+        if (_timer >= _patrolDuration || _wallChecker.IsWallAhead(_direction))
+        {
+            _timer = 0f;
+            _mover.Stop();
+            _isWaiting = true;
+        }
     }
 }
