@@ -17,8 +17,8 @@ public class DamageFlasher : MonoBehaviour
         _waitForSeconds = new WaitForSeconds(_flashInterval);
 
         Health health = GetComponent<Health>();
-        health.OnDamaged += Flash;
-        health.OnDeath += StopFlashing;
+        health.Damaged += Flash;
+        health.Died += StopFlashing;
     }
 
     public void Flash()

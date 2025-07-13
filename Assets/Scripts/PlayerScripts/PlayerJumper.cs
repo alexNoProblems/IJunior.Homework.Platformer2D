@@ -7,7 +7,7 @@ public class PlayerJumper : MonoBehaviour
     public bool IsJumping { get; private set; }
     public bool IsGrounded { get; private set; }
 
-    public event Action OnJumped;
+    public event Action Jumped;
 
     [SerializeField] private float _jumpForce = 13f;
     [SerializeField] private float _jumpDirectionY = 1;
@@ -46,6 +46,6 @@ public class PlayerJumper : MonoBehaviour
 
         _rigidbody2D.AddForce(jumpVector * _jumpForce, ForceMode2D.Impulse);
 
-        OnJumped?.Invoke();
+        Jumped?.Invoke();
     }
 }

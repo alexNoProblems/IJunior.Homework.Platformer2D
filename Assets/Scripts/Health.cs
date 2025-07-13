@@ -16,8 +16,8 @@ public class Health : MonoBehaviour
 
     public bool IsDead => _isDead;
 
-    public event Action OnDamaged;
-    public event Action OnDeath;
+    public event Action Damaged;
+    public event Action Died;
 
     private void Awake()
     {
@@ -32,7 +32,7 @@ public class Health : MonoBehaviour
 
         _currentHealth = Mathf.Clamp(_currentHealth - damage, _minHealth, _maxHealth);
 
-        OnDamaged?.Invoke();
+        Damaged?.Invoke();
 
         if (_currentHealth == _minHealth)
         {
@@ -76,6 +76,6 @@ public class Health : MonoBehaviour
     private void Die()
     {
         _isDead = true;
-        OnDeath?.Invoke();
+        Died?.Invoke();
     }
 }

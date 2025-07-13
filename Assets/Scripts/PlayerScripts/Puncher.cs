@@ -9,7 +9,7 @@ public class Puncher : MonoBehaviour
     private Transform _gloveSpawnPoint;
     private GloveEnemyKiller _gloveEnemyKiller;
 
-     public event Action OnKick;
+    public event Action Punched;
 
     public void Init(Glove glove, Transform gloveSpawnPoint)
     {
@@ -38,7 +38,7 @@ public class Puncher : MonoBehaviour
         _glove.gameObject.SetActive(true);
         _gloveAnimator.PlayPunch(facingDirection);
 
-        OnKick?.Invoke();
+        Punched?.Invoke();
     }
 
     public void HideGlove()

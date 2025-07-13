@@ -49,7 +49,7 @@ public class Player : MonoBehaviour
         _playerKiller.Init(_playerAnimator, _deathDelay);
         _playerHealerHandler.Init(_coinSoundPlayer);
 
-        _health.OnDeath += OnDeath;
+        _health.Died += OnDeath;
     }
 
     private void FixedUpdate()
@@ -65,7 +65,7 @@ public class Player : MonoBehaviour
     private void OnDestroy()
     {
         if (_health != null)
-            _health.OnDeath -= OnDeath;  
+            _health.Died -= OnDeath;  
     }
 
     private void HandleMovement()

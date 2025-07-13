@@ -22,9 +22,7 @@ public class GloveEnemyKiller : MonoBehaviour, ITriggerHandler2D
 
     public void HandleTriggerEnter2D(Collider2D collider2D)
     {
-        Enemy enemy = collider2D.GetComponent<Enemy>();
-
-        if (enemy != null)
+        if (collider2D.TryGetComponent<Enemy>(out Enemy enemy))
         {
             KnockBack(enemy);
             StartCoroutine(DieAfterDelay(enemy));
@@ -45,13 +43,11 @@ public class GloveEnemyKiller : MonoBehaviour, ITriggerHandler2D
 
     private void KnockBack(Enemy enemy)
     {
-        Rigidbody2D rigidbody2D = enemy.GetComponent<Rigidbody2D>();
+        if (enemy.TryGetComponent<Rigidbody2D>(out Rigidbody2D rigidbody2D))
+        {
+            Vector2 knockBack = new Vector2(_knockDirection.x, _knockBackVerticalFactor).normalized * _knockBackForce;
 
-        if (rigidbody2D == null)
-            return;
-        
-        Vector2 knockBack = new Vector2(_knockDirection.x, _knockBackVerticalFactor).normalized * _knockBackForce;
-
-        rigidbody2D.AddForce(knockBack, ForceMode2D.Impulse);
+            rigidbody2D.AddForce(knockBack, ForceMode2D.Impulse);
+        }
     }
 }
