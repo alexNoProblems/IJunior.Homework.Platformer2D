@@ -10,6 +10,7 @@ public class BoxingGloveSoundPlayer : MonoBehaviour
 
     public void Init(Puncher puncher)
     {
+        _puncher = puncher;
         _audioSource = GetComponent<AudioSource>();
 
         puncher.Punched += PlayKickSound;
