@@ -5,15 +5,17 @@ using UnityEngine.UI;
 public class SmoothHealthSliderDisplay : HealthDisplayBase
 {
     [SerializeField] private Slider _smoothHealthSlider;
-    [SerializeField] private float _smoothSpeed = 50f;
 
     private Coroutine _currentRoutine;
+    private float _minSliderValue = 0f;
+    private float _maxSliderValue = 1f;
 
     protected override void Start()
     {
         base.Start();
-        _smoothHealthSlider.maxValue = _health.MaxHealth;
-        _smoothHealthSlider.value = _health.CurrentHealth;
+        _smoothHealthSlider.minValue = _minSliderValue;
+        _smoothHealthSlider.maxValue = _maxSliderValue;
+        _smoothHealthSlider.value = GetNormalizedHealth();
     }
 
     protected override void UpdateUI()
@@ -21,14 +23,30 @@ public class SmoothHealthSliderDisplay : HealthDisplayBase
         if (_currentRoutine != null)
             StopCoroutine(_currentRoutine);
 
-        _currentRoutine = StartCoroutine(SmoothTransition(_health.CurrentHealth));
+        float normalizedValue = GetNormalizedHealth();
+        _currentRoutine = StartCoroutine(SmoothTransition(normalizedValue));
+    }
+
+    private float GetNormalizedHealth()
+    {
+        if (_health.MaxHealth <= 0)
+            return _minSliderValue;
+
+        return (float)_health.CurrentHealth / _health.MaxHealth;
     }
 
     private IEnumerator SmoothTransition(float targetValue)
     {
-        while (Mathf.Abs(_smoothHealthSlider.value - targetValue) > 0.01f)
+        float startValue = _smoothHealthSlider.value;
+        float elapsedTime = 0f;
+        float durationAnimation = 0.5f;
+
+        while (elapsedTime < durationAnimation)
         {
-            _smoothHealthSlider.value = Mathf.MoveTowards(_smoothHealthSlider.value, targetValue, _smoothSpeed * Time.deltaTime);
+            elapsedTime += Time.deltaTime;
+            float progress = Mathf.Clamp01(elapsedTime / durationAnimation);
+
+            _smoothHealthSlider.value = Mathf.Lerp(startValue, targetValue, progress);
 
             yield return null;
         }
