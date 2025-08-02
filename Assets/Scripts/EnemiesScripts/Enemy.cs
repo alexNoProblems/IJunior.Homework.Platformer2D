@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(EnemyMover), typeof(SpriteFlipper), typeof(EnemyPatroller))]
-[RequireComponent(typeof(EnemyChaser))]
+[RequireComponent(typeof(EnemyChaser), typeof(Health))]
 public class Enemy : MonoBehaviour
 {
     [SerializeField] private WallChecker _wallChecker;
@@ -12,12 +12,16 @@ public class Enemy : MonoBehaviour
     private EnemyPatroller _patroller;
     private EnemyChaser _chaser;
     private SpriteFlipper _spriteFlipper;
+    private Health _health;
     private bool _isDying = false;
 
     public bool IsDying => _isDying;
 
     private void Awake()
     {
+        _health = GetComponent<Health>();
+        _health.Died += Die;
+
         _mover = GetComponent<EnemyMover>();
         _patroller = GetComponent<EnemyPatroller>();
         _chaser = GetComponent<EnemyChaser>();
@@ -40,6 +44,12 @@ public class Enemy : MonoBehaviour
         {
             _patroller.Patrol(Time.fixedDeltaTime);
         }
+    }
+
+    private void OnDestroy()
+    {
+        if (_health != null)
+            _health.Died -= Die;            
     }
 
     public void Die()
