@@ -3,7 +3,7 @@ using UnityEngine;
 [RequireComponent(typeof(PlayerMover), typeof(PlayerJumper), typeof(JumpSoundPlayer))]
 [RequireComponent(typeof(PlayerCollector), typeof(SpriteFlipper), typeof(BoxingGloveSoundPlayer))]
 [RequireComponent(typeof(Health), typeof(PlayerKiller), typeof(DeathSoundPlayer))]
-[RequireComponent(typeof(PlayerHealerHandler), typeof(GloveEnemyKiller), typeof(Vampirism))]
+[RequireComponent(typeof(PlayerHealerHandler), typeof(GloveEnemyKiller))]
 public class Player : MonoBehaviour
 {
     [SerializeField] private InputReader _inputReader;
@@ -43,7 +43,6 @@ public class Player : MonoBehaviour
         _health = GetComponent<Health>();
         _playerKiller = GetComponent<PlayerKiller>();
         _playerHealerHandler = GetComponent<PlayerHealerHandler>();
-        _vampirism = GetComponent<Vampirism>();
 
         _jumper.Init(_groundChecker);
         _jumpSoundPlayer.Init(_jumper);
@@ -53,7 +52,7 @@ public class Player : MonoBehaviour
         _puncher.Init(_glove, _gloveSpawnPoint);
         _playerKiller.Init(_playerAnimator, _deathDelay);
         _playerHealerHandler.Init(_coinSoundPlayer);
-        _vampirism.Init(_vampirismEffectUI);
+        _vampirismEffectUI.Subscribe(_vampirism);
 
         _health.Died += OnDeath;
     }

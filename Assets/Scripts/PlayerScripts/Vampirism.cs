@@ -1,7 +1,8 @@
 using System.Collections;
 using UnityEngine;
+using System;
 
-[RequireComponent(typeof(Health))]
+[RequireComponent(typeof(Health), typeof(ClosestEnemyFinder))]
 public class Vampirism : MonoBehaviour
 {
     [SerializeField] private float _duration = 6f;
@@ -11,24 +12,22 @@ public class Vampirism : MonoBehaviour
     [SerializeField] private int _damagePerFlick = 1;
     [SerializeField] private int _healPerFlick = 1;
 
-    private bool _isActive = false;
-    private bool _isOnCoolDown = false;
     private Health _playerHealth;
-    private VampirismEffectUI _effectUI;
-    private WaitForSeconds _waitForSecondDuration;
-    private WaitForSeconds _waitForSecondCooldown;
+    private ClosestEnemyFinder _enemyFinder;
+    private bool _isActive;
+    private bool _isOnCoolDown;
+    private WaitForSeconds _waitFlick;
 
+    public event Action<float, float> OnActivated;
+    public event Action<float> OnCooldownStarted;
+    public event Action<float> OnTimerUpdated;
+    public event Action<float> OnCooldownUpdated;
 
     private void Awake()
     {
         _playerHealth = GetComponent<Health>();
-        _waitForSecondDuration = new WaitForSeconds(_flickInterval);
-        _waitForSecondCooldown = new WaitForSeconds(_cooldown);
-    }
-
-    public void Init(VampirismEffectUI effectUI)
-    {
-        _effectUI = effectUI;
+        _enemyFinder = GetComponent<ClosestEnemyFinder>();
+        _waitFlick = new WaitForSeconds(_flickInterval);
     }
 
     public void TryActivate()
@@ -42,7 +41,7 @@ public class Vampirism : MonoBehaviour
     private IEnumerator ActivateVampirism()
     {
         _isActive = true;
-        _effectUI?.Show(_range, _duration);
+        OnActivated?.Invoke(_range, _duration);
 
         float elapsedTime = 0f;
 
@@ -69,7 +68,7 @@ public class Vampirism : MonoBehaviour
     private IEnumerator CoolDownRoutine()
     {
         _isOnCoolDown = true;
-        _effectUI?.ShowCooldown(_cooldown);
+        OnCooldownStarted?.Invoke(_cooldown);
 
         yield return _waitForSecondCooldown;
 
@@ -78,6 +77,6 @@ public class Vampirism : MonoBehaviour
 
     private Enemy FindClosestEnemyInRange()
     {
-        return ClosestEnemyFinder.FindClosestEnemy(transform.position, _range);
+        return _enemyFinder.FindClosestEnemy(transform.position, _range);
     }
 }

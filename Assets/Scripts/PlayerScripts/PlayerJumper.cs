@@ -7,8 +7,6 @@ public class PlayerJumper : MonoBehaviour
     public bool IsJumping { get; private set; }
     public bool IsGrounded { get; private set; }
 
-    public event Action Jumped;
-
     [SerializeField] private float _jumpForce = 13f;
     [SerializeField] private float _jumpDirectionY = 1;
     [SerializeField] private float _jumpHorizontalFactor = 2f;
@@ -16,6 +14,8 @@ public class PlayerJumper : MonoBehaviour
     private GroundChecker _groundChecker;
     private Rigidbody2D _rigidbody2D;
 
+    public event Action Jumped;
+    
     private void Awake()
     {
         _rigidbody2D = GetComponent<Rigidbody2D>();

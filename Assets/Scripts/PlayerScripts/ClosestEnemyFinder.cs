@@ -1,24 +1,23 @@
 using UnityEngine;
 
-public class ClosestEnemyFinder
+public class ClosestEnemyFinder: MonoBehaviour
 {
-    public static Enemy FindClosestEnemy(Vector2 origin, float range)
+    public Enemy FindClosestEnemy(Vector2 origin, float range)
     {
-        Enemy[] enemies = Object.FindObjectsOfType<Enemy>();
+        Collider2D[] hits = Physics2D.OverlapCircleAll(origin, range);
         Enemy closestEnemy = null;
         float closestSqrDistance = float.MaxValue;
-        float sqrRange = range * range;
 
-        foreach (Enemy enemy in enemies)
+        foreach (Collider2D hit in hits)
         {
-            if (enemy.TryGetComponent(out Health health) && !health.IsDead)
+            if (hit.TryGetComponent(out Enemy enemy) && enemy.TryGetComponent(out Health health) && !health.IsDead)
             {
-                float sqrDistance = ((Vector2)enemy.transform.position - origin).sqrMagnitude;
+                float sqrDistance = ((Vector2)hit.transform.position - origin).sqrMagnitude;
 
-                if (sqrDistance < sqrRange && sqrDistance < closestSqrDistance)
+                if (sqrDistance < closestSqrDistance)
                 {
-                    closestEnemy = enemy;
                     closestSqrDistance = sqrDistance;
+                    closestEnemy = enemy;
                 }
             }
         }
