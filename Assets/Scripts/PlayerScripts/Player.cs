@@ -3,7 +3,7 @@ using UnityEngine;
 [RequireComponent(typeof(PlayerMover), typeof(PlayerJumper), typeof(JumpSoundPlayer))]
 [RequireComponent(typeof(PlayerCollector), typeof(SpriteFlipper), typeof(BoxingGloveSoundPlayer))]
 [RequireComponent(typeof(Health), typeof(PlayerKiller), typeof(DeathSoundPlayer))]
-[RequireComponent(typeof(PlayerHealerHandler), typeof(GloveEnemyKiller))]
+[RequireComponent(typeof(PlayerHealerHandler), typeof(GloveEnemyKiller), typeof(Vampirism))]
 public class Player : MonoBehaviour
 {
     [SerializeField] private InputReader _inputReader;
@@ -14,10 +14,6 @@ public class Player : MonoBehaviour
     [SerializeField] private Glove _glove;
     [SerializeField] private CameraFollower _cameraFollower;
     [SerializeField] private Transform _gloveSpawnPoint;
-    [SerializeField] private Vampirism _vampirism;
-    [SerializeField] private VampirismEffectUI _vampirismEffectUI;
-    [SerializeField] private float _vampirismRadius = 5f;
-    [SerializeField] private float _vampirismDuration = 6f;
     [SerializeField] private float _deathDelay = 2f;
 
     private PlayerMover _mover;
@@ -30,6 +26,7 @@ public class Player : MonoBehaviour
     private Health _health;
     private PlayerKiller _playerKiller;
     private PlayerHealerHandler _playerHealerHandler;
+    private Vampirism _vampirism;
 
     private void Awake()
     {
@@ -43,6 +40,7 @@ public class Player : MonoBehaviour
         _health = GetComponent<Health>();
         _playerKiller = GetComponent<PlayerKiller>();
         _playerHealerHandler = GetComponent<PlayerHealerHandler>();
+        _vampirism = GetComponent<Vampirism>();
 
         _jumper.Init(_groundChecker);
         _jumpSoundPlayer.Init(_jumper);
@@ -52,7 +50,6 @@ public class Player : MonoBehaviour
         _puncher.Init(_glove, _gloveSpawnPoint);
         _playerKiller.Init(_playerAnimator, _deathDelay);
         _playerHealerHandler.Init(_coinSoundPlayer);
-        _vampirismEffectUI.Subscribe(_vampirism);
 
         _health.Died += OnDeath;
     }

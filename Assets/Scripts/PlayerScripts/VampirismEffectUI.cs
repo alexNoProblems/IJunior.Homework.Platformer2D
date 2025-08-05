@@ -15,8 +15,6 @@ public class VampirismEffectUI : MonoBehaviour
 
         _vampirism.OnActivated += OnActivated;
         _vampirism.OnCooldownStarted += OnCooldownStarted;
-        _vampirism.OnTimerUpdated += _timerText.UpdateTime;
-        _vampirism.OnCooldownUpdated += _timerText.UpdateTime;
     }
 
     private void OnDestroy()
@@ -26,10 +24,7 @@ public class VampirismEffectUI : MonoBehaviour
 
         _vampirism.OnActivated -= OnActivated;
         _vampirism.OnCooldownStarted -= OnCooldownStarted;
-        _vampirism.OnTimerUpdated -= _timerText.UpdateTime;
-        _vampirism.OnCooldownUpdated -= _timerText.UpdateTime;
     }
-
     private void OnActivated(float radius, float duration)
     {
         _circle.Show(radius);

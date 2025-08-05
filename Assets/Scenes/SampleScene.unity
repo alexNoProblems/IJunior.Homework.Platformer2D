@@ -2645,6 +2645,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _timerText: {fileID: 442901865}
+  _maxDisplayTime: 6
+--- !u!114 &442901869
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 442901864}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31013818c630a4901ba9e5086eb261c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &454787474
 GameObject:
   m_ObjectHideFlags: 0
@@ -4384,8 +4397,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6162587041082957066, guid: 47e634773c8db41408670d7e128c76d3, type: 3}
-    - {fileID: -1999713564748870685, guid: 47e634773c8db41408670d7e128c76d3, type: 3}
-    - {fileID: 2281238631601849256, guid: 47e634773c8db41408670d7e128c76d3, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 6470128242222275962, guid: 47e634773c8db41408670d7e128c76d3, type: 3}
@@ -4403,15 +4414,21 @@ PrefabInstance:
       addedObject: {fileID: 1814726236}
     - targetCorrespondingSourceObject: {fileID: 2749133815102990133, guid: 47e634773c8db41408670d7e128c76d3, type: 3}
       insertIndex: 4
-      addedObject: {fileID: 1814726247}
+      addedObject: {fileID: 1814726249}
     - targetCorrespondingSourceObject: {fileID: 2749133815102990133, guid: 47e634773c8db41408670d7e128c76d3, type: 3}
       insertIndex: 5
-      addedObject: {fileID: 1814726207}
+      addedObject: {fileID: 1814726248}
+    - targetCorrespondingSourceObject: {fileID: 2749133815102990133, guid: 47e634773c8db41408670d7e128c76d3, type: 3}
+      insertIndex: 6
+      addedObject: {fileID: 1814726247}
     - targetCorrespondingSourceObject: {fileID: 2749133815102990133, guid: 47e634773c8db41408670d7e128c76d3, type: 3}
       insertIndex: 7
-      addedObject: {fileID: 1814726139}
+      addedObject: {fileID: 1814726207}
     - targetCorrespondingSourceObject: {fileID: 2749133815102990133, guid: 47e634773c8db41408670d7e128c76d3, type: 3}
       insertIndex: 9
+      addedObject: {fileID: 1814726139}
+    - targetCorrespondingSourceObject: {fileID: 2749133815102990133, guid: 47e634773c8db41408670d7e128c76d3, type: 3}
+      insertIndex: 11
       addedObject: {fileID: 1814726181}
     - targetCorrespondingSourceObject: {fileID: 2749133815102990133, guid: 47e634773c8db41408670d7e128c76d3, type: 3}
       insertIndex: -1
@@ -4440,9 +4457,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2749133815102990133, guid: 47e634773c8db41408670d7e128c76d3, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1814726220}
-    - targetCorrespondingSourceObject: {fileID: 2749133815102990133, guid: 47e634773c8db41408670d7e128c76d3, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1814726235}
     - targetCorrespondingSourceObject: {fileID: 7811617812972127483, guid: 47e634773c8db41408670d7e128c76d3, type: 3}
       insertIndex: 5
       addedObject: {fileID: 2015127901}
@@ -22845,10 +22859,6 @@ MonoBehaviour:
   _glove: {fileID: 2015127892}
   _cameraFollower: {fileID: 519420033}
   _gloveSpawnPoint: {fileID: 951602562}
-  _vampirism: {fileID: 1814726236}
-  _vampirismEffectUI: {fileID: 2147458929}
-  _vampirismRadius: 5
-  _vampirismDuration: 6
   _deathDelay: 2
 --- !u!95 &1814726145
 Animator:
@@ -23167,25 +23177,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: affe0c71f38874cbdbe5a5c3cbb3baf0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1814726235
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1814726134}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 38c9621bccc914643b99dd914959aed9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _enemyFinder: {fileID: 1814726247}
-  _duration: 6
-  _cooldown: 4
-  _flickInterval: 0.5
-  _range: 5
-  _damagePerFlick: 1
-  _healPerFlick: 1
 --- !u!114 &1814726236
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23198,7 +23189,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38c9621bccc914643b99dd914959aed9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemyFinder: {fileID: 0}
   _duration: 6
   _cooldown: 4
   _flickInterval: 0.5
@@ -23215,6 +23205,32 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e86a71859db4145e5ba80cff89aec0aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1814726248
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1814726134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54a9bb7dfe726473c85886195e0a0dfc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _circle: {fileID: 305734216}
+  _timerText: {fileID: 442901868}
+--- !u!114 &1814726249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1814726134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31013818c630a4901ba9e5086eb261c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &1817717615
@@ -25877,17 +25893,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 86
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2147458929 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 195918508870409935, guid: 1d8a39bb187e642b69fd657beb0f8a11, type: 3}
-  m_PrefabInstance: {fileID: 4208765106020620946}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 54a9bb7dfe726473c85886195e0a0dfc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &2147458930 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8446481329750537153, guid: 1d8a39bb187e642b69fd657beb0f8a11, type: 3}
@@ -25962,6 +25967,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1456768485}
     m_Modifications:
+    - target: {fileID: 195918508870409935, guid: 1d8a39bb187e642b69fd657beb0f8a11, type: 3}
+      propertyPath: _circle
+      value: 
+      objectReference: {fileID: 305734216}
+    - target: {fileID: 195918508870409935, guid: 1d8a39bb187e642b69fd657beb0f8a11, type: 3}
+      propertyPath: _timerText
+      value: 
+      objectReference: {fileID: 442901868}
     - target: {fileID: 4448915074712103585, guid: 1d8a39bb187e642b69fd657beb0f8a11, type: 3}
       propertyPath: m_text
       value: 6
@@ -26017,6 +26030,18 @@ PrefabInstance:
     - target: {fileID: 5718074975741723879, guid: 1d8a39bb187e642b69fd657beb0f8a11, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 2.1549
+      objectReference: {fileID: 0}
+    - target: {fileID: 6155053932303848799, guid: 1d8a39bb187e642b69fd657beb0f8a11, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6155053932303848799, guid: 1d8a39bb187e642b69fd657beb0f8a11, type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6155053932303848799, guid: 1d8a39bb187e642b69fd657beb0f8a11, type: 3}
+      propertyPath: m_Color.r
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6207339006003607634, guid: 1d8a39bb187e642b69fd657beb0f8a11, type: 3}
       propertyPath: m_Name
@@ -26092,6 +26117,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4677617594021060136, guid: 1d8a39bb187e642b69fd657beb0f8a11, type: 3}
       insertIndex: -1
       addedObject: {fileID: 442901868}
+    - targetCorrespondingSourceObject: {fileID: 4677617594021060136, guid: 1d8a39bb187e642b69fd657beb0f8a11, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 442901869}
   m_SourcePrefab: {fileID: 100100000, guid: 1d8a39bb187e642b69fd657beb0f8a11, type: 3}
 --- !u!1001 &6159484457493130776
 PrefabInstance:

@@ -228,7 +228,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8446481329750537153}
-  - component: {fileID: 195918508870409935}
+  - component: {fileID: 6046387621458973373}
+  - component: {fileID: 4085089716159935365}
   m_Layer: 0
   m_Name: VampirismRadiusIndicator
   m_TagString: Untagged
@@ -251,9 +252,9 @@ Transform:
   - {fileID: 8865440438159714944}
   - {fileID: 825207228560658222}
   m_Father: {fileID: 0}
-  m_RootOrder: 135
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &195918508870409935
+--- !u!114 &6046387621458973373
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -262,11 +263,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 6207339006003607634}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 54a9bb7dfe726473c85886195e0a0dfc, type: 3}
+  m_Script: {fileID: 11500000, guid: affe0c71f38874cbdbe5a5c3cbb3baf0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _circleSprite: {fileID: 6155053932303848799}
-  _timerText: {fileID: 4448915074712103585}
+  _maxHealth: 100
+  _minHealth: 0
+--- !u!114 &4085089716159935365
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6207339006003607634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e86a71859db4145e5ba80cff89aec0aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7921753858277625246
 GameObject:
   m_ObjectHideFlags: 0

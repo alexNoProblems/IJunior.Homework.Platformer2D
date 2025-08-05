@@ -21,8 +21,6 @@ GameObject:
   - component: {fileID: 4403109927967126595}
   - component: {fileID: 752225070720532690}
   - component: {fileID: 2806922517738832052}
-  - component: {fileID: 2281238631601849256}
-  - component: {fileID: -1999713564748870685}
   - component: {fileID: 4162704163168957564}
   m_Layer: 0
   m_Name: Felix
@@ -374,34 +372,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _boxingGloveKickSound: {fileID: 0}
---- !u!114 &2281238631601849256
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2749133815102990133}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5118cd5265914ab1ae564a14ec2ef5b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _jumpSound: {fileID: 0}
---- !u!114 &-1999713564748870685
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2749133815102990133}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9abb5fba6879740b694dde9fe7d180bc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _spriteRenderer: {fileID: 0}
-  _duration: 2
-  _flashInterval: 0.15
 --- !u!114 &4162704163168957564
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -592,6 +562,7 @@ MonoBehaviour:
   _knockBackForce: 30
   _knockBackVerticalFactor: 0.5
   _deathDelay: 2
+  _damage: 1
 --- !u!114 &7288095613514910689
 MonoBehaviour:
   m_ObjectHideFlags: 0

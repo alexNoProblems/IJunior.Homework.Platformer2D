@@ -47,17 +47,18 @@ public class Vampirism : MonoBehaviour
 
         while (elapsedTime < _duration)
         {
-            elapsedTime += _flickInterval;
+            Enemy enemy = _enemyFinder.FindClosestEnemy(transform.position, _range);
 
-            Enemy target = FindClosestEnemyInRange();
-
-            if (target != null && target.TryGetComponent(out Health targetHealth) && !targetHealth.IsDead)
+            if (enemy != null && enemy.TryGetComponent(out Health enemyHealth) && !enemyHealth.IsDead)
             {
-                targetHealth.TakeDamage(_damagePerFlick);
+                enemyHealth.TakeDamage(_damagePerFlick);
                 _playerHealth.Heal(_healPerFlick);
             }
 
-            yield return _waitForSecondDuration;
+            elapsedTime += _flickInterval;
+            OnTimerUpdated?.Invoke(Mathf.Max(0f, _duration - elapsedTime));
+
+            yield return _waitFlick;
         }
 
         _isActive = false;
@@ -70,13 +71,16 @@ public class Vampirism : MonoBehaviour
         _isOnCoolDown = true;
         OnCooldownStarted?.Invoke(_cooldown);
 
-        yield return _waitForSecondCooldown;
+        float cooldownLeft = _cooldown;
+
+        while (cooldownLeft > 0f)
+        {
+            OnCooldownUpdated?.Invoke(cooldownLeft);
+            cooldownLeft -= Time.deltaTime;
+
+            yield return null;
+        }
 
         _isOnCoolDown = false;
-    }
-
-    private Enemy FindClosestEnemyInRange()
-    {
-        return _enemyFinder.FindClosestEnemy(transform.position, _range);
     }
 }
