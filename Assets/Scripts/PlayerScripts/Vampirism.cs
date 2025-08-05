@@ -35,10 +35,10 @@ public class Vampirism : MonoBehaviour
         if (_isActive || _isOnCoolDown)
             return;
 
-        StartCoroutine(ActivateVampirism());
+        StartCoroutine(ActivateAbility());
     }
 
-    private IEnumerator ActivateVampirism()
+    private IEnumerator ActivateAbility()
     {
         _isActive = true;
         OnActivated?.Invoke(_range, _duration);

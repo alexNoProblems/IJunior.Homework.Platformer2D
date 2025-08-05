@@ -45,11 +45,11 @@ public class Enemy : MonoBehaviour
             _patroller.Patrol(Time.fixedDeltaTime);
         }
     }
-
+    
     private void OnDestroy()
     {
         if (_health != null)
-            _health.Died -= Die;            
+            _health.Died -= Die;
     }
 
     public void Die()

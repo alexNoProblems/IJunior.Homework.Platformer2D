@@ -10,7 +10,7 @@ public class ClosestEnemyFinder: MonoBehaviour
 
         foreach (Collider2D hit in hits)
         {
-            if (hit.TryGetComponent(out Enemy enemy) && enemy.TryGetComponent(out Health health) && !health.IsDead)
+            if (hit.TryGetComponent(out Enemy enemy))
             {
                 float sqrDistance = ((Vector2)hit.transform.position - origin).sqrMagnitude;
 
